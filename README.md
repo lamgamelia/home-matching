@@ -6,7 +6,7 @@ Home owners are often faced with the challenge of finding the right interior des
 
 ## Key Features:
 
--Home owner registration: Home owners should be able to register on the platform via mobile phone, facebook, or google for quicker access. Home owners to fill in relevant project and design preferences, including but not limited to home type, estimated budget, key collection date
+* Home owner registration: Home owners should be able to register on the platform via mobile phone, facebook, or google for quicker access. Home owners to fill in relevant project and design preferences, including but not limited to home type, estimated budget, key collection date
 -Designer registration: Designers should be able to register on the platform, providing information about their portfolio, design styles, and services offered.
 -Matching Algorithm: The platform should use sophisticated matching algorithm to connect home owners with designers based on a variety of factor and priortisation. Home owners should be presented with few designer choices where they can view the designers portfolio and reviews, before identifying the top 3 to engage in deeper discussion
 -Project Management [optional]: The platform should have a scheduler where home owners/designers can manage their meetings/progress.
