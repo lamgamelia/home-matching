@@ -2,17 +2,24 @@
 
 ## Problem Statement:
 
-Home owners are often faced with the challenge of finding the right interior designer to bring their dreamy home to life. With the abundance of designing companies out at the market, it takes the home owners countless meetings and time to narrow their searches. Designers, on the other hand, are struggling to find new clients and expand their business. There is a need for a platform that can connect home owners with designers, simplifying the searching process through AI-driven matching algorithm.
+* Home owners are often faced with the challenge of finding the right interior designer to bring their dreamy home to life. With the abundance of designing companies out at the market, it takes the home owners countless meetings and time to narrow their searches. 
+* Designers, on the other hand, are struggling to find new clients and expand their business. 
+* There is a need for a platform that can 1) connect home owners directly with designers, and 2) shorten the searching process through superior matching algorithm according to features that home owners take priority in.
 
 ## Key Features:
 
+# Phase 1
 * Home owner registration: Home owners should be able to register on the platform via mobile phone, facebook, or google for quicker access. Home owners to fill in relevant project and design preferences, including but not limited to home type, estimated budget, key collection date
 * Designer registration: Designers should be able to register on the platform, providing information about their portfolio, design styles, and services offered.
 * Matching Algorithm: The platform should use sophisticated matching algorithm to connect home owners with designers based on a variety of factor and priortisation. Home owners should be presented with few designer choices where they can view the designers portfolio and reviews, before identifying the top 3 to engage in deeper discussion
+* Designer Database Algorithm: The platform will scrap through google search and reviews to obtain a sizeable database of designers (?)
+* In-app Messaging: The platform should allow home owners to chat with selected designers, to communicate and discuss on the projects, including sending pictures and attachments
+* Review and rating systems: The platform should allow home owners to leave review for designers that they engaged or interact with, designers can also attach external review site such as facebook and google (or we can scrap it and inject them in the app to make whole interface more cohesive)
+* Payment processing: The platform should provide a secure payment processing option i.e. integrating with paypal etc, if we were to engage in payment handling process (eg. collection of deposit)
+
+# Phase 2
+* Advance Matching Algorithm: The algorithm will be improved to AI matching with ML
 * Project Management [optional]: The platform should have a scheduler where home owners/designers can manage their meetings/progress.
-- In-app Messaging: The platform should allow home owners to chat with selected designers, to communicate and discuss on the projects, including sending pictures and attachments
-- Review and rating systems: The platform should allow home owners to leave review for designers that they engaged or interact with, designers can also attach external review site such as facebook (or we can scrap it and inject them in the app to make whole interface more cohesive)
-- Payment processing [TBC]: The platform should provide a secure payment processing option i.e. integrating with paypal etc, if we were to engage in payment handling process (eg. collection of deposit)
 
 ### Is the problem still relevant after some years?
 Yes, the problem of home owners struggling to find the right designer among the increasing pool of designers remain relevant even after some years. Given by past trend - 44,500 designers in 2017 to 57,400 designers in 2022, we would expect the pool of designers will grow even further in the future. Thus, the need for a platform that can effectively connect home owners with satisfiable designers is likely to persist in the future.
