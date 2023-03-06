@@ -1,15 +1,40 @@
 
-  class Homepage extends React.Component {
-      constructor() {
-      super();
-      }
-      render(){
-      return (
-      <div>
-          {/*Q2. Placeholder for Homepage code that shows free seats visually.*/}
-      </div>);
-      }
+class Designers extends React.Component {
+  constructor() {
+  super();
   }
+  render(){
+  return (
+  <div>
+
+  </div>);
+  }
+}
+
+class Gallery extends React.Component {
+  constructor() {
+  super();
+  }
+  render(){
+  return (
+  <div>
+
+  </div>);
+  }
+}
+
+class Contact extends React.Component {
+  constructor() {
+  super();
+  }
+  render(){
+  return (
+  <div>
+      
+  </div>);
+  }
+}
+
   class Homey extends React.Component {
     constructor() {
       super();
@@ -33,39 +58,32 @@
 
     render() {
       return (
+        <div className = "home">
+        <div className = "logo"><h1>Homey</h1></div>
+        <div className ="navPane">
+          <a
+                onClick={() => this.setSelector(1)}
+                className={this.state.selector === 1 ? "active" : ""}
+          >
+            Our Designer
+          </a>
+          <a
+            onClick={() => this.setSelector(2)}
+            className={this.state.selector === 2 ? "active" : ""}
+          >
+            Gallery
+          </a>
+          <a
+            onClick={() => this.setSelector(3)}
+            className={this.state.selector === 3 ? "active" : ""}
+          >
+            Contact
+          </a>
+      </div>
         <div>
-          <h1>Homey</h1>
-          <div className ="navPane">
-            <button
-                  onClick={() => this.setSelector(1)}
-                  className={this.state.selector === 1 ? "active" : ""}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => this.setSelector(2)}
-              className={this.state.selector === 2 ? "active" : ""}
-            >
-              Display Travellers
-            </button>
-            <button
-              onClick={() => this.setSelector(3)}
-              className={this.state.selector === 3 ? "active" : ""}
-            >
-              Add Traveller
-            </button>
-            <button
-              onClick={() => this.setSelector(4)}
-              className={this.state.selector === 4 ? "active" : ""}
-            >
-              Delete Traveller
-            </button>
-        </div>
-        <div>
-          {this.state.selector === 1 && <Homepage portfolio={this.state.designPortfolio}/>}
-          {this.state.selector === 2 && (<Display />)}
-          {this.state.selector === 3 && (<Add />)}
-          {this.state.selector === 4 && (<Delete />)}
+          {this.state.selector === 1 && (<Designers portfolio={this.state.designPortfolio}/>)}
+          {this.state.selector === 2 && (<Gallery />)}
+          {this.state.selector === 3 && (<Contact />)}
         </div>
         </div>
       );

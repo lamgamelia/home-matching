@@ -1,4 +1,38 @@
-.navPane{
-    margin-left: auto;
-    margin-right: auto;
+
+
+.home {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+
+a{
+    padding: 5px;
+}
+
+a:hover {
+    background-color: rgb(255, 253, 253);
+    text-decoration: underline;
+}
+
+
+.logo{
+    justify-self: start;
+}
+
+.navPane {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
+
+body{
+    background-color: white;
+}
+
+.active{
+    color: rgb(240, 13, 13);
+    font-weight: bold;
 }
