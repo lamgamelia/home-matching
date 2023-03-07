@@ -2,30 +2,74 @@
 
 .home {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: "logo nav getMatched login";
+    justify-content: center;
     align-items: center;
 }
 
 a{
-    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 a:hover {
-    background-color: rgb(255, 253, 253);
     text-decoration: underline;
+    cursor: pointer;
 }
 
 
 .logo{
-    justify-self: start;
+    grid-area: logo;
+}
+
+#homeyLogo{
+    height: 90px;
+    width: 100px;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+
+#backgroundHome{
+    height: 100%;
+    width: 100%;
 }
 
 .navPane {
-    justify-self: center;
+    grid-area: nav;
+    position: absolute;
+    top: auto;
+    left: 0;
+    right: 0;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: large;
+    height: auto;
+    width: auto;
+}
+
+.getMatched {
+    grid-area: getMatched;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: large;
+    margin-right: 10px;
+    background-color: cornflowerblue;
+    color: white;
+    height: auto;
+}
+
+.login {
+    grid-area: login;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: large;
+    margin-right: 10px;
+    height: 50px;
 }
 
 body{
