@@ -1,39 +1,12 @@
+const Route = ReactRouterDOM.Route;
+const BrowserRouter = ReactRouterDOM.BrowserRouter;
+const Routes = ReactRouterDOM.Routes;
+const HashRouter = ReactRouterDOM.HashRouter;
+const Link = ReactRouterDOM.Link;
 
-class Designers extends React.Component {
-  constructor() {
-  super();
-  }
-  render(){
-  return (
-  <div>
-
-  </div>);
-  }
-}
-
-class Gallery extends React.Component {
-  constructor() {
-  super();
-  }
-  render(){
-  return (
-  <div>
-
-  </div>);
-  }
-}
-
-class Contact extends React.Component {
-  constructor() {
-  super();
-  }
-  render(){
-  return (
-  <div>
-      
-  </div>);
-  }
-}
+import {Designers} from "./pages/Designers.js";
+import {Gallery} from "./pages/Gallery.js";
+import {Contact} from "./pages/Contact.js";
 
   class Homey extends React.Component {
     constructor() {
@@ -41,11 +14,6 @@ class Contact extends React.Component {
       this.state = { designPortfolio: [], selector: 1};
     }
   
-    setSelector(value)
-    {
-      this.setState({selector: value});
-    }
-
     componentDidMount() {
       this.loadData();
     }
@@ -59,38 +27,37 @@ class Contact extends React.Component {
     render() {
       return (
         <div className = "home">
-        <div className = "logo"><h1>Homey</h1></div>
-        <div className ="navPane">
-          <a
-                onClick={() => this.setSelector(1)}
-                className={this.state.selector === 1 ? "active" : ""}
-          >
-            Our Designer
-          </a>
-          <a
-            onClick={() => this.setSelector(2)}
-            className={this.state.selector === 2 ? "active" : ""}
-          >
-            Gallery
-          </a>
-          <a
-            onClick={() => this.setSelector(3)}
-            className={this.state.selector === 3 ? "active" : ""}
-          >
-            Contact
-          </a>
-      </div>
-        <div>
-          {this.state.selector === 1 && (<Designers portfolio={this.state.designPortfolio}/>)}
-          {this.state.selector === 2 && (<Gallery />)}
-          {this.state.selector === 3 && (<Contact />)}
-        </div>
+          <div className = "logo">
+            <h1>Homey</h1>
+          </div>
+          <div className ="navPane">
+            <Link to="/designers">
+              Our Designer
+            </Link>
+            <Link to="/gallery">
+              Gallery
+            </Link>
+            <Link to="/contacts">
+              Contact
+            </Link>
+          </div>
         </div>
       );
     }
   }
-  
-  const element = <Homey />;
-  
-  ReactDOM.render(element, document.getElementById('contents'));
+
+function App() {
+  return (
+  <HashRouter>
+    <Route path="/" component={Homey}/>
+    <Route path="/designers" component={Designers}/>
+    <Route path="/contacts" component={Contact}/>
+    <Route path="/gallery" component={Gallery}/>
+  </HashRouter>);
+}
+
+const app = <App/>; 
+
+  ReactDOM.render(app, document.getElementById('contents'));
+
   

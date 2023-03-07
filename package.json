@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Pro MERN Stack (2nd Edition)",
   "main": "index.js",
+  "type":"module",
   "scripts": {
     "start": "nodemon -w server server/server.js",
     "compile": "babel src --out-dir public",
