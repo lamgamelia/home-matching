@@ -1,3 +1,5 @@
+
+
 const Route = ReactRouterDOM.Route;
 const BrowserRouter = ReactRouterDOM.BrowserRouter;
 const Routes = ReactRouterDOM.Routes;
@@ -7,11 +9,13 @@ const Link = ReactRouterDOM.Link;
 import {Designers} from "./pages/Designers.js";
 import {Gallery} from "./pages/Gallery.js";
 import {Contact} from "./pages/Contact.js";
+import {Match} from "./pages/Match.js";
+import {Login} from "./pages/Login.js";
 
   class Homey extends React.Component {
     constructor() {
       super();
-      this.state = { designPortfolio: [], selector: 1};
+      this.state = { designPortfolio: [], selector: 0};
     }
   
     componentDidMount() {
@@ -26,45 +30,46 @@ import {Contact} from "./pages/Contact.js";
 
     render() {
       return (
-        <div className = "home">
-          <div className = "logo">
-            <img id="homeyLogo" src="/homey.png" alt="Homey"/>
+        <div className = "container-fluid">
+          <div className="row align-items-center">
+            <div className="col-md-3">
+              <img className="image-rounded p-2"  width="80px" height="80px" id="homeyLogo" src="/homey.png" alt="Homey" />
+            </div>
+            <div className="col-md-6">
+              <ul className="nav justify-content-center text-center">
+                <li className="h4 nav-item">
+                  <Link to="/designers" className="nav-link" style={{color: "rgb(102, 102, 255)"}}>
+                    Our Designer
+                  </Link>
+                </li>
+                <li className="h4 nav-item">
+                  <Link to="/gallery" className="nav-link" style={{color: "rgb(102, 102, 255)"}}>
+                    Gallery
+                  </Link>
+                </li>
+                <li className="h4 nav-item">
+                  <Link to="/contacts" className="nav-link" style={{color: "rgb(102, 102, 255)"}}>
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className ="col-md-3">
+              <ul className="nav justify-content-center text-center">
+                  <li className="h6 nav-item">
+                    <Link to="/matchDesigner" className="nav-link" style={{color: "rgb(102, 102, 255)"}}>
+                      Find My Designer!
+                    </Link>
+                  </li>
+                  <li className="h6 nav-item">
+                    <Link to="/login" className="nav-link" style={{color: "rgb(102, 102, 255)"}}>
+                      Login/ Sign Up
+                    </Link>
+                  </li>
+              </ul>
+            </div>
           </div>
-          <div className ="navPane">
-            <Link to="/designers">
-              Our Designer
-            </Link>
-            <Link to="/gallery">
-              Gallery
-            </Link>
-            <Link to="/contacts">
-              Contact
-            </Link>
-          </div>
-          <div className = "getMatched">
-            <a
-                onClick={() => this.setSelector(2)}
-                className={this.state.selector === 2 ? "active" : ""}
-            >
-                Get Matched
-            </a>
-          </div>
-          <div className = "login">
-            <a
-                onClick={() => this.setSelector(3)}
-                className={this.state.selector === 3 ? "active" : ""}
-            >
-                Login/ Sign Up
-            </a>
-          </div>
-          <div>
-            {this.state.selector === 1 && (<Designers portfolio={this.state.designPortfolio}/>)}
-            {this.state.selector === 2 && (<GetMatched />)}
-            {this.state.selector === 3 && (<Login />)}
-          </div>
-          <br></br>
-          <br></br>
-          <div style={{width: "100%"}}><img id="backgroundHome" src="/home-design.jpg" alt="Home"/></div>
+          <div style={{backgroundImage: "url(/home-design2.jpg)"}}></div>
         </div>
       );
     }
@@ -77,6 +82,8 @@ function App() {
     <Route path="/designers" component={Designers}/>
     <Route path="/contacts" component={Contact}/>
     <Route path="/gallery" component={Gallery}/>
+    <Route path="/matchDesigner" component={Match}/>
+    <Route path="/login" component={Login}/>
   </HashRouter>);
 }
 
