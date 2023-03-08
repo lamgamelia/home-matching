@@ -30,7 +30,7 @@ import {Login} from "./pages/Login.js";
 
     render() {
       return (
-        <div className = "container-fluid">
+        <div className = "container-fluid p-0 m-0">
           <div className="row align-items-center">
             <div className="col-md-3">
               <img className="image-rounded p-2"  width="80px" height="80px" id="homeyLogo" src="/homey.png" alt="Homey" />
@@ -69,7 +69,12 @@ import {Login} from "./pages/Login.js";
               </ul>
             </div>
           </div>
-          <div style={{backgroundImage: "url(/home-design2.jpg)"}}></div>
+          <div class = "background-image" style={{backgroundImage: "url(/home-design2.jpg)", height: "500px", backgroundSize: "cover", backgroundPosition: "center",}}>
+            <div class='card d-flex  align-items-center' style={{backgroundColor: "rgba(255, 255, 255, 0.0)", height: "100%", width:'100%'}}>
+              <div class='card p-3 m-3' style={{backgroundColor: "rgba(255, 255, 255, 0.5)"}}><h1 style={{color: "rgb(0,0,0)"}}>Matching Homeowner with Interior Designer</h1></div>
+              <div class='card' style={{backgroundColor: "rgba(255, 255, 255, 0.3)", height: "100px", width:'100px'}}>Test</div>
+            </div>
+          </div>
         </div>
       );
     }
