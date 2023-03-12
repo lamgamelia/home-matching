@@ -69,12 +69,12 @@ import {Login} from "./pages/Login.js";
               <div className ="col-3">
                 <ul className="nav justify-content-center text-center">
                     <li className="h6 nav-item">
-                      <Link to="/matchDesigner" className="nav-link" style={{color: "rgb(0,0,0)"}}>
+                      <Link to="/matchDesigner" className="nav-link" style={{color: "rgb(0,0,0)"}} onClick={() => this.setHome(false)}>
                         Find My Designer!
                       </Link>
                     </li>
                     <li className="h6 nav-item">
-                      <Link to="/login" className="nav-link" style={{color: "rgb(0,0,0)"}}>
+                      <Link to="/login" className="nav-link" style={{color: "rgb(0,0,0)"}} onClick={() => this.setHome(false)}>
                         Login/ Sign Up
                       </Link>
                     </li>
