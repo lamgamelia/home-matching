@@ -21,7 +21,7 @@ export var Gallery = /*#__PURE__*/function (_React$Component) {
   _createClass(Gallery, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, "Gallery");
+      return /*#__PURE__*/React.createElement("div", null, "Testing 123", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "Test");
     }
   }]);
   return Gallery;

@@ -4,8 +4,12 @@ export class Gallery extends React.Component {
     }
     render(){
     return (
-    <div>
-      Gallery
+      <div>  
+        Testing 123
+
+        <br></br>
+        <br></br>
+        Test
     </div>);
     }
   };

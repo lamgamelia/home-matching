@@ -35,7 +35,7 @@ export var Home = /*#__PURE__*/function (_React$Component) {
           width: '100%'
         }
       }, /*#__PURE__*/React.createElement("div", {
-        className: "row justify-content-md-center align-items-center text-center p-3 m-3",
+        className: "row g-0 no-gutters justify-content-md-center align-items-center text-center p-3 m-3",
         style: {
           backgroundColor: "rgba(255, 255, 255, 0.7)"
         }
@@ -82,11 +82,11 @@ export var Home = /*#__PURE__*/function (_React$Component) {
       })))), /*#__PURE__*/React.createElement("div", {
         className: "container-fluid item-align-center p-0"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "row g-0 item-align-center p-5"
+        className: "row g-0 no-gutters item-align-center p-5"
       }, /*#__PURE__*/React.createElement("h1", {
         className: "justify-content-center text-center"
       }, "How Homey Works")), /*#__PURE__*/React.createElement("div", {
-        className: "row g-0 justify-content-md-center item-align-center p-5"
+        className: "row g-0 no-gutters justify-content-md-center item-align-center p-5"
       }, /*#__PURE__*/React.createElement("div", {
         className: "col-md-2 p-2 m-2 text-center",
         style: {
@@ -138,7 +138,6 @@ export var Home = /*#__PURE__*/function (_React$Component) {
           backgroundColor: "#e6f7ff"
         }
       }, /*#__PURE__*/React.createElement("div", {
-        id: "test",
         className: "container item-align-center p-5"
       }, /*#__PURE__*/React.createElement("h1", {
         className: "justify-content-center text-center p-5"

@@ -10,7 +10,7 @@ app.use('/node_modules/bootstrap/dist/css/bootstrap.min.css', (req, res, next) =
   res.sendFile(path.join(__dirname, '../node_modules/bootstrap/dist/css/bootstrap.min.css'));
 });
 
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/homey.html'));
 });
 
