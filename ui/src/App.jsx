@@ -7,12 +7,12 @@ const NavLink = ReactRouterDOM.NavLink;
 const Redirect = ReactRouterDOM.Redirect;
 const Switch = ReactRouterDOM.Switch;
 
-import {Home} from "./pages/Home.js";
-import {Designers} from "./pages/Designers.js";
-import {Gallery} from "./pages/Gallery.js";
-import {Contact} from "./pages/Contact.js";
-import {Match} from "./pages/Match.js";
-import {Login} from "./pages/Login.js";
+import {Home} from "./pages/Home.jsx";
+import {Designers} from "./pages/Designers.jsx";
+import {Gallery} from "./pages/Gallery.jsx";
+import {Contact} from "./pages/Contact.jsx";
+import {Match} from "./pages/Match.jsx";
+import {Login} from "./pages/Login.jsx";
 
 
 

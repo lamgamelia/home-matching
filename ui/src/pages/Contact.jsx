@@ -1,11 +1,13 @@
-export class Login extends React.Component {
+export class Contact extends React.Component {
     constructor() {
     super();
     }
     render(){
     return (
     <div>
-      Login
+      Contact    
     </div>);
     }
   };
+
+

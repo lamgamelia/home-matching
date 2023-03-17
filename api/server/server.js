@@ -4,8 +4,8 @@ const path = require('path');
 const {ApolloServer} = require('apollo-server-express');
 const {GraphQLScalarType} = require('graphql');
 const {Kind} = require('graphql/language');
-
-const app = express();
+const {connectToDb} = require('./db.js');
+let db;
 
 const GraphQLDate = new GraphQLScalarType({
   name: 'GraphQLDate',
@@ -99,26 +99,24 @@ function projectAdd(_,{newProject}){
   return projectDB[projectDB.length -1]
 }
 
-app.use(express.static(path.join(__dirname, '../public')));
-
-app.use('/node_modules/bootstrap/dist/css/bootstrap.min.css', (req, res, next) => {
-  res.type('text/css');
-  res.sendFile(path.join(__dirname, '../node_modules/bootstrap/dist/css/bootstrap.min.css'));
-});
+const app = express();
 
 const server = new ApolloServer({
   typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),
   resolvers,
 })
 
-server.applyMiddleware({app, path: '/graphql'})
+server.applyMiddleware({app, path: '/graphql'});
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/homey.html'));
-});
-
-app.listen(3000, function () {
-  console.log('App started on port 3000');
-});
+(async function () {
+  try {
+    db = await connectToDb();
+    app.listen(8000, function () {
+      console.log('App started on port 8000');
+    });
+  } catch (err) {
+    console.log('ERROR:', err);
+  }
+})();
 
 
