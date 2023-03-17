@@ -1,7 +1,7 @@
 {
-  "name": "pro-mern-stack-2",
+  "name": "homey",
   "version": "1.0.0",
-  "description": "Pro MERN Stack (2nd Edition)",
+  "description": "IT5007 Project",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -12,14 +12,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vasansr/pro-mern-stack-2.git"
+    "url": "git+https://github.com/IT5007-2220/course-project-homey.git"
   },
-  "author": "vasan.promern@gmail.com",
+  "author": "cxloh.eric@gmail.com",
   "license": "ISC",
-  "homepage": "https://github.com/vasansr/pro-mern-stack-2",
+  "homepage": "https://github.com/IT5007-2220/course-project-homey",
   "dependencies": {
+    "apollo-server-express": "^2.26.1",
     "bootstrap": "^5.2.3",
     "express": "^4.16.4",
+    "graphql": "^0.13.2",
     "jquery": "^3.6.3",
     "nodemon": "^1.18.9",
     "react-router-dom": "^6.9.0"
