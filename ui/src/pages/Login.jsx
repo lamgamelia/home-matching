@@ -36,7 +36,7 @@ export class Login extends React.Component {
           <p>Not a member? <a href="#!">Register</a></p>
           <p>or sign up with:</p>
           <button type="button" className="btn btn-link btn-floating mx-1">
-            <i className="bi bi-facebook-f"></i>
+            <i className="bi bi-facebook"></i>
           </button>
 
           <button type="button" className="btn btn-link btn-floating mx-1">

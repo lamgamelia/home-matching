@@ -106,3 +106,6 @@ dist
 #public folder
 ui/public/App.js
 ui/public/pages/
+ui/public/app.bundle.js
+
+package-lock.json
