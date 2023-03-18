@@ -21,7 +21,129 @@ export var Designers = /*#__PURE__*/function (_React$Component) {
   _createClass(Designers, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, "Designers");
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        className: "bg-light",
+        style: {
+          position: 'relative'
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "row no-gutters item-align-center p-5"
+      }, /*#__PURE__*/React.createElement("h1", {
+        className: ""
+      }, "Top Recommendations")), /*#__PURE__*/React.createElement("div", {
+        className: "row justify-content-center px-5 bg-light"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "card col-md-4 d-flex justify-content-center justify-content-md-between bg-light",
+        style: {
+          width: "18rem",
+          border: '3px'
+        }
+      }, /*#__PURE__*/React.createElement("img", {
+        src: "home-design.jpg",
+        className: "card-img-top",
+        alt: "Designer1"
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "card-body"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "card-text"
+      }, "designer1"))), /*#__PURE__*/React.createElement("div", {
+        className: "card col-md-4 d-flex justify-content-center justify-content-md-between bg-light",
+        style: {
+          width: "18rem",
+          border: '3px'
+        }
+      }, /*#__PURE__*/React.createElement("img", {
+        src: "home-design.jpg",
+        className: "card-img-top",
+        alt: "Designer2"
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "card-body"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "card-text"
+      }, "designer2"))), /*#__PURE__*/React.createElement("div", {
+        className: "card col-md-4 d-flex justify-content-center justify-content-md-between bg-light",
+        style: {
+          width: "18rem",
+          border: '3px'
+        }
+      }, /*#__PURE__*/React.createElement("img", {
+        src: "home-design.jpg",
+        className: "card-img-top",
+        alt: "Designer3"
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "card-body"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "card-text"
+      }, "designer3"))))), /*#__PURE__*/React.createElement("div", {
+        style: {
+          position: 'relative'
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "row no-gutters item-align-center p-5"
+      }, /*#__PURE__*/React.createElement("h1", {
+        className: ""
+      }, "Our Designers")), /*#__PURE__*/React.createElement("ul", {
+        class: "nav nav-pills mb-3",
+        id: "pills-tab",
+        role: "tablist"
+      }, /*#__PURE__*/React.createElement("li", {
+        class: "nav-item",
+        role: "presentation"
+      }, /*#__PURE__*/React.createElement("button", {
+        class: "nav-link active",
+        id: "designers-all",
+        "data-bs-toggle": "pill",
+        "data-bs-target": "#pills-home",
+        type: "button",
+        role: "tab",
+        "aria-controls": "pills-home",
+        "aria-selected": "true"
+      }, "All")), /*#__PURE__*/React.createElement("li", {
+        class: "nav-item",
+        role: "presentation"
+      }, /*#__PURE__*/React.createElement("button", {
+        class: "nav-link",
+        id: "designers-registered",
+        "data-bs-toggle": "pill",
+        "data-bs-target": "#pills-profile",
+        type: "button",
+        role: "tab",
+        "aria-controls": "pills-profile",
+        "aria-selected": "false"
+      }, "Registered")), /*#__PURE__*/React.createElement("li", {
+        class: "nav-item",
+        role: "presentation"
+      }, /*#__PURE__*/React.createElement("button", {
+        class: "nav-link",
+        id: "designers-popular",
+        "data-bs-toggle": "pill",
+        "data-bs-target": "#pills-contact",
+        type: "button",
+        role: "tab",
+        "aria-controls": "pills-contact",
+        "aria-selected": "false"
+      }, "Popular"))), /*#__PURE__*/React.createElement("div", {
+        class: "tab-content",
+        id: "pills-tabContent"
+      }, /*#__PURE__*/React.createElement("div", {
+        class: "tab-pane fade show active",
+        id: "pills-home",
+        role: "tabpanel",
+        "aria-labelledby": "designers-all",
+        tabindex: "0"
+      }, "..."), /*#__PURE__*/React.createElement("div", {
+        class: "tab-pane fade",
+        id: "pills-profile",
+        role: "tabpanel",
+        "aria-labelledby": "designers-registered",
+        tabindex: "0"
+      }, "..."), /*#__PURE__*/React.createElement("div", {
+        class: "tab-pane fade",
+        id: "pills-contact",
+        role: "tabpanel",
+        "aria-labelledby": "designers-popular",
+        tabindex: "0"
+      }, "..."))));
     }
   }]);
   return Designers;
