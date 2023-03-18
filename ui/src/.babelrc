@@ -7,7 +7,7 @@
           "safari": "10",
           "firefox": "50",
           "chrome": "49"
-        }, "modules": false
+        }
       }],
       "@babel/preset-react"
     ]

@@ -1,0 +1,33 @@
+scalar GraphQLDate
+
+
+type Project{
+    id: Int!
+    title: String!
+    company: String!
+    propertyType: String!
+    propertySize: Int!
+    designStyle1: String!
+    designStyle2: String!
+    noOfBedrooms: Int! 
+    created: GraphQLDate!
+}
+
+input ProjectInput{
+    title: String!
+    company: String!
+    propertyType: String!
+    propertySize: Int!
+    designStyle1: String!
+    designStyle2: String!
+    noOfBedrooms: Int! 
+} 
+
+type Query{
+    projectList: [Project!]!
+    projectView(id: String!): Project!
+}
+
+type Mutation {
+    projectAdd(newProject: ProjectInput!):Project!
+}
