@@ -1,15 +1,32 @@
-export class Contact extends React.Component {
-    constructor() {
-    super();
-    }
+const { useState, useEffect } = React;
 
-    validateForm() {
-      
-    }
+export function Contact() {
+    
+  const [userData, setUserData] = useState({name:"", email:"", subject:"", message:""});
+  
+  const userContact = () => {
+    // REPLACE WITH LOGIN INFO FOR LOGGED IN USERS
+    const data = {name:"", email:""};
+    setUserData({ ...userData, name: data.name, email: data.email});
+  }
 
-    render(){
+  useEffect(() => {
+    console.log(userData);
+    //userContact();
+  }, [userData]);
+
+  //Store data in states
+  const handleInputs = () => {
+    const nameInput = document.getElementById("name").value;
+    const emailInput = document.getElementById("email").value;
+    const subjectInput = document.getElementById("subject").value;
+    const messageInput = document.getElementById("message").value;
+    setUserData({name: nameInput, email: emailInput, subject: subjectInput, message: messageInput});
+  }
+
     return (
-    <div className="container">
+    
+    <div className="container">    
       <section className="mb-4">
         <h2 className="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
         <p className="text-center w-responsive mx-auto mb-5">
@@ -58,7 +75,7 @@ export class Contact extends React.Component {
             </form>
 
             <div className="text-center text-md-left">
-              <a className="btn btn-primary" onClick={this.validateForm()}>Send</a>
+              <a className="btn btn-primary" onClick={handleInputs}>Send</a>
             </div>
             <div className="status"></div> 
 
@@ -83,7 +100,6 @@ export class Contact extends React.Component {
         </div>
       </section>
     </div>);
-    }
   };
 
 
