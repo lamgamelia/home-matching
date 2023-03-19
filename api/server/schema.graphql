@@ -23,11 +23,31 @@ input ProjectInput{
     noOfBedrooms: Int! 
 } 
 
+type Message{
+    _id: ID!
+    id: Int!
+    name: String!
+    email: String!
+    subject: String!
+    message: String
+    datetime: GraphQLDate!
+}
+
+input InputMessage {
+    name: String!
+    email: String!
+    subject: String!
+    message: String
+    datetime: GraphQLDate!
+}
+
 type Query{
     projectList: [Project!]!
     projectView(id: String!): Project!
+    listMessage: [Message]!
 }
 
 type Mutation {
     projectAdd(newProject: ProjectInput!):Project!
+    addMessage(newMessage: InputMessage): Message 
 }
