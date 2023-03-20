@@ -1,3 +1,4 @@
+const Link = ReactRouterDOM.Link;
 export class Login extends React.Component {
     constructor() {
     super();
@@ -33,7 +34,7 @@ export class Login extends React.Component {
         <button type="button" className="btn btn-primary btn-block mb-4">Sign in</button>
 
         <div className="text-center">
-          <p>Not a member? <a href="#!">Register</a></p>
+          <p>Not a member? <a href="/register">Register</a></p>
           <p>or sign up with:</p>
           <button type="button" className="btn btn-link btn-floating mx-1">
             <i className="bi bi-facebook"></i>

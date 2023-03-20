@@ -13,7 +13,7 @@ import {Gallery} from "./pages/Gallery.jsx";
 import {Contact} from "./pages/Contact.jsx";
 import {Match} from "./pages/Match.jsx";
 import {Login} from "./pages/Login.jsx";
-
+import {Register} from "./pages/Register.jsx";
 
 
   class Homey extends React.Component {
@@ -100,6 +100,7 @@ function App() {
       <Route path="/gallery" component={Gallery}/>
       <Route path="/matchDesigner" component={Match}/>
       <Route path="/login" component={Login}/>
+      <Route path="/register" component={Register}/>
     </Switch>
   </BrowserRouter>);
 }
