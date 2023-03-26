@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-
 const User = require('../model/User');
 
 module.exports = {
@@ -17,6 +16,7 @@ module.exports = {
             });
 
             const res = await newUser.save();
+            console.log(res);
             const token = jwt.sign({
                 id: res.id,
                 email: res.email,
@@ -25,7 +25,7 @@ module.exports = {
             
             return {
                 ...res._doc,
-                id: res_id,
+                id: res._id,
                 token
             };
         }
