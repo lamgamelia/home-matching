@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "IT5007 Project",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "start": "nodemon -w server server/server.js",
     "compile": "babel src --out-dir public",
