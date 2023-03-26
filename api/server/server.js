@@ -1,10 +1,12 @@
-const fs = require('fs');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const {ApolloServer, UserInputError} = require('apollo-server-express');
+const mongoose = require('mongoose');
 const {GraphQLScalarType} = require('graphql');
 const {Kind} = require('graphql/language');
 const {connectToDb} = require('./db.js');
+//const resolvers = require('./resolvers');
 let db;
 
 const GraphQLDate = new GraphQLScalarType({
@@ -114,6 +116,8 @@ async function addMessage (_, {newMessage})
     return addedMessage;
 }
 
+const usersResolvers = require('./resolvers/users');
+
 const resolvers = {
   Query:{
     projectList,
@@ -123,6 +127,7 @@ const resolvers = {
   Mutation:{
     projectAdd,
     addMessage,
+    ...usersResolvers.Mutation
   },
   GraphQLDate,
 }
