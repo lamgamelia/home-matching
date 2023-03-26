@@ -1,11 +1,16 @@
-const fs = require('fs');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const {ApolloServer, UserInputError} = require('apollo-server-express');
+const mongoose = require('mongoose');
+
+const resolvers = require('./resolvers');
+/*below codes and resolvers are moved to ./resolvers
 const {GraphQLScalarType} = require('graphql');
 const {Kind} = require('graphql/language');
-const {connectToDb} = require('./db.js');
+
 let db;
+const {connectToDb} = require('./db.js');
 
 const GraphQLDate = new GraphQLScalarType({
   name: 'GraphQLDate',
@@ -20,6 +25,7 @@ const GraphQLDate = new GraphQLScalarType({
     return (ast.kind == Kind.STRING) ? new Date(ast.value): undefined;
   },
 })
+*/
 
 const projectDB = [{
   id: 1,
@@ -89,45 +95,6 @@ function projectAdd(_,{newProject}){
   return projectDB[projectDB.length -1]
 }
 
-async function listMessage()
-{
-  const messages = await db.collection('messageData').find({}).toArray();
-  return messages;
-}
-
-async function addMessage (_, {newMessage})
-{
-  console.log("Adding message", newMessage);
-  async function getNextSequence(name) {
-    const result = await db.collection('messageCounters').findOneAndUpdate(
-      {_id: name},
-      {$inc: { current: 1 }},
-      {returnOriginal: false},
-    );
-    return result.value.current;
-  }
-    newMessage.id = await getNextSequence('fixedindex');
-
-    newMessage.datetime = new Date();
-    const result = await db.collection('messageData').insertOne(newMessage);
-    const addedMessage = await db.collection('messageData').findOne({_id: result.insertedId});
-    return addedMessage;
-}
-
-const resolvers = {
-  Query:{
-    projectList,
-    projectView,
-    listMessage,
-  },
-  Mutation:{
-    projectAdd,
-    addMessage,
-  },
-  GraphQLDate,
-}
-
-
 const app = express();
 
 const server = new ApolloServer({
@@ -143,7 +110,7 @@ server.applyMiddleware({app, path: '/graphql'});
 
 (async function () {
   try {
-    db = await connectToDb();
+    //db = await connectToDb();
     app.listen(8000, function () {
       console.log('App started on port 8000');
     });

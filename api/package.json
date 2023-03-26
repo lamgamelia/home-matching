@@ -19,12 +19,15 @@
   "homepage": "https://github.com/IT5007-2220/course-project-homey",
   "dependencies": {
     "apollo-server-express": "^2.26.1",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "express": "^4.16.4",
-    "mongodb": "^3.7.3",
     "graphql": "^0.13.2",
     "jquery": "^3.6.3",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^3.7.3",
+    "mongoose": "^7.0.3",
     "nodemon": "^1.18.9",
     "react-router-dom": "^6.9.0"
   },
