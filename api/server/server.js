@@ -110,7 +110,6 @@ server.applyMiddleware({app, path: '/graphql'});
 
 (async function () {
   try {
-    //db = await connectToDb();
     app.listen(8000, function () {
       console.log('App started on port 8000');
     });

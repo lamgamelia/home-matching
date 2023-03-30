@@ -1,7 +1,4 @@
-const { connectToDb } = require('../db.js');
-(async function () {
-  db = await connectToDb();
-}) ();
+const { db} = require('../db.js');
 
 async function listMessage()
     {

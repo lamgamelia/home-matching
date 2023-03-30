@@ -1,19 +1,16 @@
 const mongoose = require('mongoose');
 const { MongoClient } = require('mongodb');
-let db;//Variable that points to the real DB.
-async function connectToDb() {
-	  console.log("connect to db called");
-	  const url = 'mongodb://localhost/homey';
-	  await mongoose.connect(url);
-	  const client = new MongoClient(url, { useNewUrlParser: true });
-	  await client.connect();
-	  console.log('Connected to Homey MongoDB at', url);
-	  db = client.db();
-	  return db;
-}
+const url = 'mongodb://localhost/homey';
 
-(async function () {
-    db = await connectToDb();
-}) ();
+// create a new MongoDB client and connect to the database
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect()
+  .then(() => {
+    console.log('Connected to Homey MongoDB at', url);
+    return mongoose.connect(url);
+  })
+  .catch(err => console.error('Failed to connect to MongoDB:', err));
 
-module.exports = {connectToDb, db};
+// expose the MongoDB client and database
+const db = client.db();
+module.exports = { client, db };
