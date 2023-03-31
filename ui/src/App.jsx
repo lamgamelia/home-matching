@@ -38,7 +38,7 @@ import {Register} from "./pages/Register.jsx";
       const isHome = currentLocation === "/";
       return (
         <div className = "container-fluid p-0 sticky-top">
-          <div className="container-fluid item-align-center p-0" style={{position: "sticky", top: "0"}}>
+          <div className="container-fluid item-align-center p-0" style={{position: "sticky", top: "0", zIndex: 100 }}>
             <div className="row no-gutters align-items-center" style={{backgroundColor: "rgba(255,255,255)"}}>
               <div className="col-3">
                 <img className="image-rounded p-2"  width="80px" height="80px" id="homeyLogo" src="/homey.png" alt="Homey" />

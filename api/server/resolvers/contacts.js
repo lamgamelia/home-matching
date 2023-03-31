@@ -5,6 +5,17 @@ async function listMessage()
       const messages = await db.collection('messageData').find({}).toArray();
       return messages;
     };
+async function listGallery()
+    {
+      const messages = await db.collection('galleryData').find({}).toArray();
+      return messages;
+    };
+    async function listReview()
+    {
+      const messages = await db.collection('reviewData').find({}).toArray();
+      console.log(messages);
+      return messages;
+    };
 
 async function addMessage (_, {newMessage})
   {

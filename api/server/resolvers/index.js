@@ -3,6 +3,8 @@ const {Kind} = require('graphql/language');
 
 const usersResolvers = require('./users');
 const contactsResolvers = require('./contacts');
+const reviewResolvers = require('./review');
+const galleryResolvers = require('./gallery');
 
 const GraphQLDate = new GraphQLScalarType({
     name: 'GraphQLDate',
@@ -20,11 +22,15 @@ const GraphQLDate = new GraphQLScalarType({
 
 module.exports = {
     Query: {
-        ...contactsResolvers.Query
+        ...contactsResolvers.Query,
+        ...reviewResolvers.Query,
+        ...galleryResolvers.Query
     },
     Mutation: {
         ...contactsResolvers.Mutation,
-        ...usersResolvers.Mutation
+        ...usersResolvers.Mutation,
+        ...reviewResolvers.Mutation,
+        ...galleryResolvers.Mutation
     },
     GraphQLDate,
 };

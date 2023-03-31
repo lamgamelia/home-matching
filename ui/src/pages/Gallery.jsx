@@ -37,7 +37,7 @@ export class Gallery extends React.Component {
 
     async loadData(){
       const query = `query{
-        projectList{
+        listGallery{
           id title propertyType designStyle1 designStyle2 noOfBedrooms
         }
       }`;
@@ -50,7 +50,7 @@ export class Gallery extends React.Component {
 
       const body = await response.text();
       const result = JSON.parse(body);
-      this.setState({projects: result.data.projectList})
+      this.setState({projects: result.data.listGallery})
     }
 
     render(){

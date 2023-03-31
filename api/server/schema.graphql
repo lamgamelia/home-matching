@@ -1,7 +1,8 @@
 scalar GraphQLDate
 
 
-type Project{
+type Gallery{
+    _id: ID
     id: Int!
     title: String!
     company: String!
@@ -10,26 +11,25 @@ type Project{
     designStyle1: String!
     designStyle2: String!
     noOfBedrooms: Int! 
-    created: GraphQLDate!
+    datetime: GraphQLDate!
 }
 
-input ProjectInput{
-    title: String!
-    company: String!
-    propertyType: String!
-    propertySize: Int!
-    designStyle1: String!
-    designStyle2: String!
-    noOfBedrooms: Int! 
-} 
-
 type Message{
-    _id: ID!
+    _id: ID
     id: Int!
     name: String!
     email: String!
     subject: String!
     message: String
+    datetime: GraphQLDate!
+}
+
+type Review{
+    _id: ID
+    id: Int!
+    name: String!
+    email: String!
+    reviewMessage: String
     datetime: GraphQLDate!
 }
 
@@ -39,6 +39,22 @@ input InputMessage {
     subject: String!
     message: String
     datetime: GraphQLDate!
+}
+
+input InputReview {
+    name: String!
+    email: String!
+    reviewMessage: String
+}
+
+input InputGallery {
+    title: String!
+    company: String!
+    propertyType: String!
+    propertySize: Int!
+    designStyle1: String!
+    designStyle2: String!
+    noOfBedrooms: Int! 
 }
 
 type User{
@@ -57,13 +73,14 @@ input RegisterInput{
 }
 
 type Query{
-    projectList: [Project!]!
-    projectView(id: String!): Project!
     listMessage: [Message]!
+    listGallery: [Gallery]!
+    listReview: [Review]
 }
 
 type Mutation {
-    projectAdd(newProject: ProjectInput!):Project!
     addMessage(newMessage: InputMessage): Message
+    addReview(newReview: InputReview): Review
+    addGallery(newGallery: InputGallery): Gallery
     register(registerInput: RegisterInput): User!
 }

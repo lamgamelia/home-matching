@@ -1,8 +1,56 @@
+const Link = ReactRouterDOM.Link;
+const NavLink = ReactRouterDOM.NavLink;
+
+function Display(props){
+    const review = props.review;
+    return(
+        <div className="col-md-4 m-0 d-flex flex-column align-items-center" style={{paddingTop: "30px", paddingBottom: "30px"}} >
+            <div>
+                <img className="image-rounded p-2"src="/homey.png"/>
+            </div>
+            <div>
+                Name: {review.name} 
+            </div>
+            <div>
+                Review: {review.reviewMessage} 
+            </div>
+        </div>
+    )
+}
+
 export class Home extends React.Component {
     constructor() {
     super();
+    this.state = {reviews:[]}
     }
+
+    componentDidMount(){
+        this.loadData()
+    }
+
+    async loadData(){
+        const query = `query{
+            listReview{
+                id name reviewMessage
+            }
+        }`;
+
+        const response = await fetch('http://localhost:8000/graphql',{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({query})
+        });
+
+        const body = await response.text();
+        const result = JSON.parse(body);
+        this.setState({reviews: result.data.listReview});
+    }
+  
+
     render(){
+    const review1 = this.state.reviews.slice(0,3);
+    const review2 = this.state.reviews.slice(3,6);
+    const review3 = this.state.reviews.slice(6,9);
     return (
     <div>
         <div className= "container-fluid background-image p-5" style={{backgroundImage: "url(/home-design2.jpg)", backgroundSize: "cover", backgroundPosition: "center",}}>
@@ -19,11 +67,11 @@ export class Home extends React.Component {
                         Are you a designer?  
                     </h2>
                     <br></br>
-                    <h5 className="font-weight-bold">
+                    <h5 className="font-weight-bold" >
                         Register with us to showcase your projects to home owners today!
                     </h5>
                     <br></br>
-                    <button>Register</button>
+                    <Link to="/register" className='m-2' ><button style={{cursor:"pointer"}}>Register</button></Link>
                     </div>
                 </div>
                 <div className="col-md-4 p-2 text-center">
@@ -36,8 +84,8 @@ export class Home extends React.Component {
                         Sign up with us to get matched with dedicated interior designers for free today!
                     </h5>
                     <br></br>
-                    <button className='m-2'>Register</button>
-                    <button className='m-2'>View Gallery</button>
+                    <Link to="/register" className='m-2'><button style={{cursor:"pointer"}}>Register</button></Link>
+                    <Link to="/gallery" className='m-2'><button style={{cursor:"pointer"}}>View Gallery</button></Link>
                     </div>
                 </div>
                 <div className="col-md-2"></div>
@@ -95,8 +143,8 @@ export class Home extends React.Component {
             </div>
             <div className="container-fluid item-align-center p-0" style={{backgroundColor: "#e6f7ff"}}>
             <div className="container item-align-center p-5">
-                <h1 className="justify-content-center text-center p-5">What Our Users Say</h1>
-                <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+                <h1 className="justify-content-center text-center p-5">Gallery Snippet</h1>
+                <div id="gallerySnippet" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                     <img className="d-block w-100" src="home-design.jpg" alt="First slide"></img>
@@ -108,16 +156,56 @@ export class Home extends React.Component {
                     <img className="d-block w-100" src="home-design.jpg" alt="Third slide"></img>
                     </div>
                 </div>
-                <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <a className="carousel-control-prev" href="#gallerySnippet" role="button" data-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="sr-only">Previous</span>
                 </a>
-                <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <a className="carousel-control-next" href="#gallerySnippet" role="button" data-slide="next">
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="sr-only">Next</span>
                 </a>
                 </div>
             </div>
+            <div id="reviewSnippet" className="carousel slide" data-ride="carousel">
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                        <div className="row no-gutters" style={{marginTop: "30px", marginLeft:"auto", marginRight:"auto", backgroundColor:"#FAF9F6"}}>  
+                            {review1.map((review) => (
+                                <div key={review.id} className="col-md-4 m-0 d-flex flex-column align-items-center" style={{ paddingTop: "30px", paddingBottom: "30px" }}>
+                                <Display review={review} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="carousel-item">
+                        <div className="row no-gutters" style={{marginTop: "30px", marginLeft:"auto", marginRight:"auto", backgroundColor:"#FAF9F6"}}>  
+                            {review2.map((review) => (
+                                <div key={review.id} className="col-md-4 m-0 d-flex flex-column align-items-center" style={{ paddingTop: "30px", paddingBottom: "30px" }}>
+                                <Display review={review} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="carousel-item">
+                        <div className="row no-gutters" style={{marginTop: "30px", marginLeft:"auto", marginRight:"auto", backgroundColor:"#FAF9F6"}}>  
+                            {review3.map((review) => (
+                                <div key={review.id} className="col-md-4 m-0 d-flex flex-column align-items-center" style={{ paddingTop: "30px", paddingBottom: "30px" }}>
+                                <Display review={review} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <a className="carousel-control-prev" href="#reviewSnippet" role="button" data-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Previous</span>
+                </a>
+                <a className="carousel-control-next" href="#reviewSnippet" role="button" data-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="sr-only">Next</span>
+                </a>
+                </div>
+            
         </div>  
     </div>);
     }
