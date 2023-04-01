@@ -74,7 +74,7 @@ input RegisterInput{
 
 type Query{
     listMessage: [Message]!
-    listGallery: [Gallery]!
+    listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int): [Gallery]!
     listReview: [Review]
 }
 

@@ -1,10 +1,30 @@
 const { db } = require('../db.js');
 
-async function listGallery()
+async function listGallery(_,{propertyType = "", designStyle = "", noOfBedrooms = 0}) {
+  const filter = {};
+  if (propertyType) {
+    filter.propertyType = propertyType;
+  }
+  if (designStyle) {
+    filter.$or = [
+      { designStyle1: designStyle },
+      { designStyle2: designStyle }
+      ];
+  }
+  if (noOfBedrooms) {
+    if (noOfBedrooms<6){
+      filter.noOfBedrooms = noOfBedrooms;
+    }
+    else
     {
-      const messages = await db.collection('galleryData').find({}).toArray();
-      return messages;
-    };
+      filter.noOfBedrooms = {$gt : 5}
+    }
+  }
+
+  const messages = await db.collection('galleryData').find(filter).toArray();
+  return messages;
+}
+
 
 async function addGallery (_, {newGallery})
   {
