@@ -1,3 +1,5 @@
+const { useState, useEffect } = React;
+
 export class Register extends React.Component {
     constructor() {
     super();
