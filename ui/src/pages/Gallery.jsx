@@ -61,22 +61,24 @@ export class Gallery extends React.Component {
       var designStylef = document.getElementById('designStyle').value;
       var noOfBedroomsf = document.getElementById('noOfBedrooms').value;
     
-      if (propertyTypef == "Property Type"){
-        propertyTypef = ""
+      if (propertyTypef == "Property Type" && designStylef == "Design Style" && noOfBedroomsf == "Number of Bedrooms"){
+        await this.setState({filterOff:true});
+      } else {
+        if (propertyTypef == "Property Type"){
+          propertyTypef = ""
+        }
+        if (designStylef == "Design Style"){
+          designStylef = ""
+        }
+        if (noOfBedroomsf == "Number of Bedrooms"){
+          noOfBedroomsf = ""
+        }
+        if (noOfBedroomsf == ">6"){
+          noOfBedroomsf = 6
+        }
+        await this.setState({filterOff:false, propertyType: propertyTypef, designStyle:designStylef, noOfBedrooms:noOfBedroomsf})
+        this.loadFilteredData();
       }
-      if (designStylef == "Design Style"){
-        designStylef = ""
-      }
-      if (noOfBedroomsf == "Number of Bedrooms"){
-        noOfBedroomsf = ""
-      }
-      if (noOfBedroomsf == ">6"){
-        noOfBedroomsf = 6
-      }
-
-      await this.setState({filterOff:false, propertyType: propertyTypef, designStyle:designStylef, noOfBedrooms:noOfBedroomsf})
-      this.loadFilteredData();
-
     }
 
     async loadFilteredData(){
