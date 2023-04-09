@@ -2,12 +2,14 @@ const { useState, useEffect } = React;
 import graphQLFetch from '../graphql.js';
 
 export function Register() {
+
+    //const[errors, setErrors] = useState({});
     const [userData, setUserData] = useState({
       username: '',
       email: '',
       password: '',
       confirmPassword: ''
-    })
+    });
 
     useEffect(() => {
       console.log(userData);
@@ -37,7 +39,7 @@ export function Register() {
         console.log('user not created');
       } else {
         console.log('user created');
-        setUserData({...userData, user:''})
+        setUserData({...userData, username: '', email: '', password: '', confirmPassword: ''})
       }
     }
 
