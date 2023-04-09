@@ -1,37 +1,67 @@
 const { useState, useEffect } = React;
 
-export class Register extends React.Component {
-    constructor() {
-    super();
+export function Register() {
+    const [userData, setUserData] = useState({
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    })
+
+    useEffect(() => {
+      console.log(userData);
+    }, [userData])
+
+    const handleInputs = (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
+      setUserData({ ...userData, [name]: value});
     }
-    render(){
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const user = { ...userData, createdAt: new Date(), }
+      const query = `mutation addUser ($user: RegisterInput!){
+        addUser (newUser: $user) {
+          id
+          email
+          username
+          createdAt
+          token
+        }
+      }`
+
+      const data = await graphQLFetch(query, { user });
+      if (!data) {
+        console.log('user not created');
+      } else {
+        console.log('user created');
+        setUserData({...userData, user:''})
+      }
+    }
+
     return (
 	    <form className="container">
         <h2 class="fw-bold mb-5">Sign up now</h2>
 
-        <div class="row">
-          <div class="col-md-6 mb-4">
-            <div class="form-outline">
-              <input type="text" id="form3Example1" class="form-control" />
-              <label class="form-label" for="form3Example1">First name</label>
-            </div>
-          </div>
-          <div class="col-md-6 mb-4">
-            <div class="form-outline">
-              <input type="text" id="form3Example2" class="form-control" />
-              <label class="form-label" for="form3Example2">Last name</label>
-            </div>
-          </div>
+        <div className="form-outline mb-4">
+          <input type="text" id="form2Example1" name="username" onChange={handleInputs} className="form-control" />
+          <label className="form-label" htmlFor="form2Example1">Username</label>
         </div>
 
         <div className="form-outline mb-4">
-          <input type="email" id="form2Example1" className="form-control" />
+          <input type="email" id="form2Example2" name="email" onChange={handleInputs} className="form-control" />
           <label className="form-label" htmlFor="form2Example1">Email address</label>
         </div>
 
         <div className="form-outline mb-4">
-          <input type="password" id="form2Example2" className="form-control" />
+          <input type="password" id="form2Example3" name="password" onChange={handleInputs} className="form-control" />
           <label className="form-label" htmlFor="form2Example2">Password</label>
+        </div>
+
+        <div className="form-outline mb-4">
+          <input type="password" id="form2Example3" name="confirmPassword" onChange={handleInputs} className="form-control" />
+          <label className="form-label" htmlFor="form2Example2">Confirm Password</label>
         </div>
 
         <div className="row mb-4">
@@ -71,5 +101,5 @@ export class Register extends React.Component {
         </div>
       </form>
     );
-   }
+   
   };
