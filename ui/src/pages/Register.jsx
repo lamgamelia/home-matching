@@ -1,4 +1,5 @@
 const { useState, useEffect } = React;
+import graphQLFetch from '../graphql.js';
 
 export function Register() {
     const [userData, setUserData] = useState({
@@ -20,9 +21,9 @@ export function Register() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      const user = { ...userData, createdAt: new Date(), }
-      const query = `mutation addUser ($user: RegisterInput!){
-        addUser (newUser: $user) {
+      const user = { ...userData, }
+      const query = `mutation register ($user: RegisterInput!){
+        register (registerInput: $user) {
           id
           email
           username
@@ -42,7 +43,7 @@ export function Register() {
 
     return (
 	    <form className="container">
-        <h2 class="fw-bold mb-5">Sign up now</h2>
+        <h2 className="fw-bold mb-5">Sign up now</h2>
 
         <div className="form-outline mb-4">
           <input type="text" id="form2Example1" name="username" onChange={handleInputs} className="form-control" />
@@ -78,7 +79,8 @@ export function Register() {
           </div>
         </div>
 
-        <button type="button" className="btn btn-primary btn-block mb-4">Sign up</button>
+        <button type="button" className="btn btn-primary btn-block mb-4" onClick={handleSubmit}>
+          Sign up</button>
 
         <div className="text-center">
           

@@ -17,8 +17,16 @@ export default async function graphQLFetch(query, variables = {}) {
     if (result.errors) {
       const error = result.errors[0];
       if (error.extensions.code == 'BAD_USER_INPUT') {
-        const details = error.extensions.exception.errors.join('\n ');
-        alert(`${error.message}:\n ${details}`);
+        try {
+          const details = error.extensions.exception.errors.join('\n ');
+          alert(`${error.message}:\n ${details}`);
+        }
+        catch (err) { //handle register/login validation errors
+          const details = Object.values(error.extensions.exception.errors).join('\n ');
+          console.log(details);
+          alert(`${error.message}:\n ${details}`);
+        }
+        
       } else {
         alert(`${error.extensions.code}: ${error.message}`);
       }
