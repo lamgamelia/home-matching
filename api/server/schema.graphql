@@ -33,16 +33,6 @@ type Review{
     datetime: GraphQLDate!
 }
 
-type Designer{
-    _id: ID
-    id: Int!
-    title: String!
-    email: String!
-    mobile: String!
-    designStyle: String!
-    description: String!
-}
-
 input InputMessage {
     name: String!
     email: String!
@@ -67,14 +57,6 @@ input InputGallery {
     noOfBedrooms: Int! 
 }
 
-input InputDesigner{
-    title: String!
-    email: String!
-    mobile: String!
-    designStyle: String!
-    description: String!
-}
-
 type User{
     id: ID!
     email: String!
@@ -94,13 +76,11 @@ type Query{
     listMessage: [Message]!
     listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int): [Gallery]!
     listReview: [Review]
-    listDesigner: [Designer]
 }
 
 type Mutation {
     addMessage(newMessage: InputMessage): Message
     addReview(newReview: InputReview): Review
     addGallery(newGallery: InputGallery): Gallery
-    addDesigner(newDesigner: InputDesigner): Designer
     register(registerInput: RegisterInput): User!
 }
