@@ -1,7 +1,3 @@
-const sudo_designers = [{id:1,title:"Designer1",info:"Mordern"},
-                        {id:2,title:"Designer2",info:"Old Fashion"},
-                        {id:3,title:"Designer3",info:"Cyber Punk"}]
-
 import {SingleDesigner} from "./SingleDesigner.jsx";
 
 class Recommended3Designers extends React.Component{
@@ -15,16 +11,20 @@ class Recommended3Designers extends React.Component{
   }
 
   render(){
-    return(
-      <div className="card col-md-4 d-flex justify-content-center justify-content-md-between bg-light" style={{width: "18rem", border:'3px'}}>
-        <img src="home-design.jpg" className="card-img-top" alt={this.props.designer.title}/>
-        <div className="card-body">
-          <h6 className="card-text">{this.props.designer.title}</h6>
-          <p className="card-text">{this.props.designer.info}</p>
-          <a href="#" className="btn btn-primary">Check it Now!</a>
-        </div>
-      </div>  
-    );
+    if (this.props.designer){
+      return(
+        <div className="card col-md-4 d-flex justify-content-center justify-content-md-between bg-light" style={{width: "18rem", border:'3px'}}>
+          <img src="home-design.jpg" className="card-img-top" alt={this.props.designer.title}/>
+          <div className="card-body">
+            <h6 className="card-text">{this.props.designer.title} ({this.props.designer.designStyle})</h6>
+            <p className="card-text">{this.props.designer.description}</p>
+            <a href="#" className="btn btn-primary">Check it Now!</a>
+          </div>
+        </div>  
+      );
+    }else{
+      return (<></>);
+    }
   }
 }
 
@@ -32,7 +32,29 @@ class Recommended3Designers extends React.Component{
 export class Designers extends React.Component {
     constructor() {
       super();
-      this.state = {designers:sudo_designers};
+      this.state = {designers:[]};
+    }
+    async loadData(){
+      const query = `query{
+        listDesigner{
+          id title designStyle description
+        }
+      }`;
+
+      const response = await fetch('http://localhost:8000/graphql',{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({query})
+      });
+
+      const body = await response.text();
+      const result = JSON.parse(body);
+      this.setState({designers: result.data.listDesigner})
+      console.log(this.state.designers);
+    }
+    
+    componentDidMount(){
+      this.loadData();
     }
 
     render(){

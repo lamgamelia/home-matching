@@ -5,6 +5,7 @@ const usersResolvers = require('./users');
 const contactsResolvers = require('./contacts');
 const reviewResolvers = require('./review');
 const galleryResolvers = require('./gallery');
+const designerResolvers = require('./designer');
 
 const GraphQLDate = new GraphQLScalarType({
     name: 'GraphQLDate',
@@ -24,13 +25,15 @@ module.exports = {
     Query: {
         ...contactsResolvers.Query,
         ...reviewResolvers.Query,
-        ...galleryResolvers.Query
+        ...galleryResolvers.Query,
+        ...designerResolvers.Query
     },
     Mutation: {
         ...contactsResolvers.Mutation,
         ...usersResolvers.Mutation,
         ...reviewResolvers.Mutation,
-        ...galleryResolvers.Mutation
+        ...galleryResolvers.Mutation,
+        ...designerResolvers.Mutation
     },
     GraphQLDate,
 };

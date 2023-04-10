@@ -1,6 +1,7 @@
 db.messageData.remove({});
 db.reviewData.remove({});
 db.galleryData.remove({});
+db.designerData.remove({});
 
 
 initMessageData = [{	
@@ -138,9 +139,26 @@ const initGalleryData = [{
   datetime: new Date(),
 }]
 
+const initDesignerData = [
+  {id:1,
+  title : 'No1 Deisgner',
+  designStyle: 'Modern',
+  description: 'Designer focus in modern style'},
+  {id:2,
+  title : 'No2 Deisgner',
+  designStyle: 'Artistic',
+  description: 'Designer focus in artistic style'},
+  {id:3,
+  title : 'No3 Deisgner',
+  designStyle: 'FreeStyle',
+  description: 'Designer focus in artistic style'}
+]
+
+
 db.messageData.insertMany(initMessageData);
 db.reviewData.insertMany(initReviewData);
 db.galleryData.insertMany(initGalleryData);
+db.designerData.insertMany(initDesignerData);
 
 db.messageCounters.remove({ _id: 'fixedindex'});
 db.messageCounters.insert({ _id: 'fixedindex', current: 0});
@@ -148,8 +166,10 @@ db.reviewCounters.remove({ _id: 'fixedindex'});
 db.reviewCounters.insert({ _id: 'fixedindex', current: 0});
 db.galleryCounters.remove({ _id: 'fixedindex'});
 db.galleryCounters.insert({ _id: 'fixedindex', current: 0});
+db.designerCounters.remove({ _id: 'fixedindex'});
+db.designerCounters.insert({ _id: 'fixedindex', current: 0});
 
 db.messageData.createIndex({message:{datetime: 1}});
 db.reviewData.createIndex({message:{datetime: 1}});
 db.galleryData.createIndex({message:{datetime: 1}});
-
+db.designerData.createIndex({message:{datetime: 1}});

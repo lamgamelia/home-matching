@@ -15,7 +15,6 @@ const server = new ApolloServer({
     return error;
   }
 })
-
 server.applyMiddleware({app, path: '/graphql'});
 
 (async function () {
