@@ -83,4 +83,5 @@ type Mutation {
     addReview(newReview: InputReview): Review
     addGallery(newGallery: InputGallery): Gallery
     register(registerInput: RegisterInput): User!
+    login(username: String!, password: String!): User!
 }
