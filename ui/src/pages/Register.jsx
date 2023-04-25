@@ -1,8 +1,9 @@
-const { useState, useEffect } = React;
+const { useContext,useState, useEffect } = React;
 import graphQLFetch from '../graphql.js';
+import { AuthContext } from '../context/auth.js';
 
 export function Register() {
-
+    const context = useContext(AuthContext);
     //const[errors, setErrors] = useState({});
     const [userData, setUserData] = useState({
       username: '',
@@ -39,6 +40,7 @@ export function Register() {
         console.log('user not created');
       } else {
         console.log('user created');
+        context.login(userData);
         setUserData({...userData, username: '', email: '', password: '', confirmPassword: ''})
       }
     }

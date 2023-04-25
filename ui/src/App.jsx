@@ -6,6 +6,9 @@ const Link = ReactRouterDOM.Link;
 const NavLink = ReactRouterDOM.NavLink;
 const Redirect = ReactRouterDOM.Redirect;
 const Switch = ReactRouterDOM.Switch;
+const { useContext } = React;
+
+import { AuthContext, AuthProvider } from "./context/auth.js";
 
 import {Home} from "./pages/Home.jsx";
 import {Designers} from "./pages/Designers.jsx";
@@ -15,6 +18,25 @@ import {Match} from "./pages/Match.jsx";
 import {Login} from "./pages/Login.jsx";
 import {Register} from "./pages/Register.jsx";
 
+function LoginStatus(props) {
+  const { user, logout } = useContext(AuthContext);
+  const loginText = user ? (
+    <p>{user.username} 
+    <Link to="/home" onClick={logout} className="nav-link" style={{ color: "rgb(0,0,0)" }}>
+      Logout
+    </Link>
+    </p>
+  ) : (
+    <Link to="/login" className="nav-link" style={{ color: "rgb(0,0,0)" }}>
+      Login/Sign up
+    </Link>
+  )
+  return (
+    <li className="h6 nav-item">
+      {loginText}
+    </li>
+  );
+}
 
   class Homey extends React.Component {
     constructor() {
@@ -74,11 +96,7 @@ import {Register} from "./pages/Register.jsx";
                         Find My Designer!
                       </Link>
                     </li>
-                    <li className="h6 nav-item">
-                      <Link to="/login" className="nav-link" style={{color: "rgb(0,0,0)"}}>
-                        Login/ Sign Up
-                      </Link>
-                    </li>
+                    <LoginStatus/>
                 </ul>
               </div>
             </div>
@@ -91,7 +109,7 @@ import {Register} from "./pages/Register.jsx";
 
 function App() {
   return (
-  <BrowserRouter>
+  <AuthProvider><BrowserRouter>
     <Route path="/" component={Homey}/>
     <Switch>
       <Route path="/home" component={Home}/>
@@ -102,7 +120,7 @@ function App() {
       <Route path="/login" component={Login}/>
       <Route path="/register" component={Register}/>
     </Switch>
-  </BrowserRouter>);
+  </BrowserRouter></AuthProvider>);
 }
 
 const app = <App/>; 

@@ -1,8 +1,10 @@
 const Link = ReactRouterDOM.Link;
-const { useState, useEffect } = React;
+const { useContext, useState, useEffect } = React;
 import graphQLFetch from '../graphql.js';
+import { AuthContext } from '../context/auth.js';
 
-export function Login () {
+export function Login (props) {
+  const context = useContext(AuthContext);
   const [userData, setUserData] = useState({
     username: '',
     password: '',
@@ -35,7 +37,9 @@ export function Login () {
         console.log('user not logged in');
       } else {
         console.log('user logged in');
+        context.login(userData);
         setUserData({...userData, username: '', email: ''})
+        props.history.push('/');
       }
   }
 
