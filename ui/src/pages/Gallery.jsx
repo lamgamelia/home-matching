@@ -4,7 +4,7 @@ function Display(props){
     <div className="col-md-4 m-0 d-flex flex-column align-items-center" style={{paddingTop: "30px", paddingBottom: "30px"}} >
         <div>
           <a href="/home">
-            <img className="image-rounded p-2"src="/homey.png"/>
+            <img className="image-rounded p-2"src={project.image || "/homey.png"}/>
           </a>
         </div>
         <div className="row">
@@ -40,7 +40,7 @@ export class Gallery extends React.Component {
     async loadData(){
       const query = `query{
         listGallery{
-          id title propertyType designStyle1 designStyle2 noOfBedrooms
+          id title propertyType designStyle1 designStyle2 noOfBedrooms image
         }
       }`;
 
@@ -52,6 +52,7 @@ export class Gallery extends React.Component {
 
       const body = await response.text();
       const result = JSON.parse(body);
+      console.log(result.data.listGallery);
       this.setState({projects: result.data.listGallery})
     }
   
@@ -132,7 +133,7 @@ export class Gallery extends React.Component {
               <h1 style={{color: "rgb(0,0,0)"}}>View Our Project Gallery</h1>
             </div>
             <div className='row' style={{width:'100%', marginTop: "100px"}}>
-              <div className='row g-0 no-gutters mx-auto justify-content-md-center align-items-center text-center p-3 m-3' style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+              <div className='row g-0 no-gutters gmx-auto justify-content-md-center align-items-center text-center p-3 m-3' style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
                 <h2 style={{color: "rgb(0,0,0)"}}>Browse thousands of home interiors to create a space you love!</h2>
               </div>
             </div>

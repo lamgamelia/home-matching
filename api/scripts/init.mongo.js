@@ -96,7 +96,7 @@ const initGalleryData = [{
   designStyle1: 'Modern',
   designStyle2: 'Nil',
   noOfBedrooms: 3 ,
-  datetime: new Date(),
+  datetime: new Date(), 
 },{
   id: 3,
   title: 'abc',

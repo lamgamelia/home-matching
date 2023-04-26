@@ -102,8 +102,6 @@ export function ImgUpload() {
                 <button className="btn btn-outline-danger btn-sm" onClick={() => deleteHandler(image)} style={{position:"absolute", bottom: 5, right: 0}}> 
                     delete
                 </button>
-                
-
               </div>
             );
           })}

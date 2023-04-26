@@ -21,14 +21,14 @@ async function listGallery(_,{propertyType = "", designStyle = "", noOfBedrooms 
     }
   }
 
-  const messages = await db.collection('galleryData').find(filter).toArray();
-  return messages;
+  const galleries = await db.collection('galleryData').find(filter).toArray();
+  return galleries;
 }
 
 
 async function addGallery (_, {newGallery})
   {
-    console.log("Adding message", newGallery);
+    console.log("Adding gallery", newGallery);
     async function getNextSequence(name) {
       const result = await db.collection('galleryCounters').findOneAndUpdate(
         {_id: name},
