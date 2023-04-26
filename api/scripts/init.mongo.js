@@ -143,15 +143,60 @@ const initDesignerData = [
   {id:1,
   title : 'No1 Deisgner',
   designStyle: 'Modern',
-  description: 'Designer focus in modern style'},
+  description: 'Designer focus in modern style',
+  houseCondtion: ['New','Resale'],
+  houseType: ['Condo','HDB'],
+  feeLevel:2},
+
   {id:2,
   title : 'No2 Deisgner',
   designStyle: 'Artistic',
-  description: 'Designer focus in artistic style'},
+  description: 'Designer focus in artistic style',
+  houseCondtion: ['Resale'],
+  houseType: ['Condo','HDB'],
+  feeLevel:1},
+
   {id:3,
   title : 'No3 Deisgner',
   designStyle: 'FreeStyle',
-  description: 'Designer focus in artistic style'}
+  description: 'Designer focus in artistic style',
+  houseCondtion: ['New'],
+  houseType: ['Condo'],
+  feeLevel:3},
+
+  {id:4,
+  title : 'No3 Deisgner',
+  designStyle: 'FreeStyle',
+  description: 'Designer focus in artistic style',
+  houseCondtion: ['New','Resale'],
+  houseType: ['Condo','HDB'],
+  feeLevel:4},
+
+  {id:5,
+  title : 'No3 Deisgner',
+  designStyle: 'FreeStyle',
+  description: 'Designer focus in artistic style',
+  houseCondtion: ['New','Resale'],
+  houseType: ['Condo','HDB'],
+  feeLevel:2},
+
+  
+  {id:6,
+  title : 'No3 Deisgner',
+  designStyle: 'FreeStyle',
+  description: 'Designer focus in artistic style',
+  houseCondtion: ['New','Resale'],
+  houseType: ['Condo','HDB'],
+  feeLevel:1},
+  
+  {id:7,
+  title : 'No3 Deisgner',
+  designStyle: 'FreeStyle',
+  description: 'Designer focus in artistic style',
+  houseCondtion: ['New','Resale'],
+  houseType: ['Condo','HDB'],
+  feeLevel:1},
+
 ]
 
 

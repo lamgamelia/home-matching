@@ -5,7 +5,6 @@ const sudo_designers = [{id:1,title:"Designer1",info:"Mordern"},
 import {SingleDesigner} from "./SingleDesigner.jsx";
 
 function MatchResult(props){
-  console.log(props);
   return(
     <div className="g-0 no-gutters mx-auto justify-content-md-center align-items-center text-center bg-light">
         <h4>Successfully Matched a Designer Style!</h4>
@@ -150,11 +149,33 @@ class HouseStyle extends React.Component{
 export class Match extends React.Component {
     constructor() {
       super();
-      this.state = {selector:1};
+      this.state = {selector:1,designers:[],feeLevel:4,designStyle:'All',houseCondition:'All'};
       this.nextpage = this.nextpage.bind(this);
       this.prevpage = this.prevpage.bind(this);
     }
 
+    async loadData(){
+      const query = `query{
+        listDesigner{
+          id title designStyle description
+        }
+      }`;
+
+      const response = await fetch('http://localhost:8000/graphql',{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({query})
+      });
+
+      const body = await response.text();
+      const result = JSON.parse(body);
+      this.setState({designers: result.data.listDesigner})
+      // console.log(this.state.designers);
+    }
+
+    componentDidMount(){
+      this.loadData();
+    }
 
     prevpage(){
       this.setState({selector:this.state.selector-1});
@@ -177,7 +198,7 @@ export class Match extends React.Component {
         
           {this.state.selector===1?<HouseType nextpage={this.nextpage} prevpage={this.prevpage}/>:<div/>}
           {this.state.selector===2?<HouseStyle nextpage={this.nextpage} prevpage={this.prevpage}/>:<div/>}
-          {this.state.selector===3?<MatchResult prevpage={this.prevpage} style={"Modern"} designers = {sudo_designers}/>:<div/>}
+          {this.state.selector===3?<MatchResult prevpage={this.prevpage} style={"Modern"} designers = {this.state.designers}/>:<div/>}
 
       </div>);
     }
