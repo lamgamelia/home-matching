@@ -17,6 +17,7 @@ import {Contact} from "./pages/Contact.jsx";
 import {Match} from "./pages/Match.jsx";
 import {Login} from "./pages/Login.jsx";
 import {Register} from "./pages/Register.jsx";
+import { ImgUpload } from "./components/ImgUpload.jsx";
 
 function LoginStatus(props) {
   const { user, logout } = useContext(AuthContext);
@@ -136,6 +137,7 @@ function App() {
       <Route path="/matchDesigner" component={Match}/>
       <AuthRoute path="/login" component={Login}/>
       <AuthRoute path="/register" component={Register}/>
+      <Route path="/imgUpload" component={ImgUpload}/>
     </Switch>
   </BrowserRouter></AuthProvider>);
 }
