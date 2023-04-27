@@ -12,6 +12,95 @@ function convertToBase64(file){
     })
 }
 
+function PropertyType(props){
+  return (
+    <div className="form-group row">
+      <label htmlFor="awesomeness" class="col-sm-6 col-form-label">
+        Property Type</label>
+      <div className="col-sm-6">
+        <select className="form-control" name="propertyType" id="awesomeness" onChange={props.changeHandler}>
+          <option></option>
+          <option>Hdb</option>
+          <option>Condo</option>
+          <option>Landed</option>
+        </select>
+      </div>
+    </div>
+  )
+}
+
+function PropertySize(props){
+  return (
+    <div className="form-group row">
+      <label htmlFor="propertySize" class="col-sm-6 col-form-label">
+        Property Size in sqft</label>
+      <div class="col-sm-6">
+        <input type="number" class="form-control" id="propertySize" onChange={props.changeHandler}/>
+      </div>
+    </div>
+  )
+}
+
+function DesignStyle1(props){
+  return (
+    <div className="form-group row">
+      <label htmlFor="designStyle1" class="col-sm-6 col-form-label">
+        Primary Design Style</label>
+      <div className="col-sm-6">
+        <select className="form-control" name="designStyle1" id="designStyle1" onChange={props.changeHandler}>
+          <option></option>
+          <option>Artistic</option>
+          <option>Industrial</option>
+          <option>Luxury</option>
+          <option>Minimalist</option>
+          <option>Modern</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+  )
+}
+
+function DesignStyle2(props){
+  return (
+    <div className="form-group row">
+      <label htmlFor="designStyle2" class="col-sm-6 col-form-label">
+        Secondary Design Style</label>
+      <div className="col-sm-6">
+        <select className="form-control" name="designStyle2" id="designStyle2" onChange={props.changeHandler}>
+          <option></option>
+          <option>Artistic</option>
+          <option>Industrial</option>
+          <option>Luxury</option>
+          <option>Minimalist</option>
+          <option>Modern</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+  )
+}
+
+function NoOfBedrooms(props){
+  return (
+    <div className="form-group row">
+      <label htmlFor="noOfBedrooms" class="col-sm-6 col-form-label">
+        No of Bedrooms</label>
+      <div className="col-sm-6">
+        <select className="form-control" name="noOfBedrooms" id="noOfBedrooms" onChange={props.changeHandler}>
+          <option></option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6 or more</option>
+        </select>
+      </div>
+    </div>
+  )
+}
+
 export function ImgUpload() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [selectedBase64, setSelectedBase64] = useState([]);
@@ -24,12 +113,20 @@ export function ImgUpload() {
     designStyle2: 'Nil',
     noOfBedrooms: 3 
   })
-  const [uploadStatus, setUploadStatus] = useState(true);
+  useEffect(() => {{
+    console.log(galleryData);
+  }}, [galleryData])
+
+  const changeHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setGalleryData({...galleryData, [name]: value});
+  };
 
   useEffect(() => {{
     console.log(selectedBase64);
   }}, [selectedBase64])
-
+  
   const onSelectFile = async (event) => {
     const selectedFiles = event.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
@@ -50,10 +147,11 @@ export function ImgUpload() {
   };
 
   const deleteHandler = (image) => {
+    const delImage = selectedBase64[selectedImages.indexOf(image)]
+    setSelectedBase64(selectedBase64.filter((e) => e !== delImage));
     setSelectedImages(selectedImages.filter((e) => e !== image));
-    setSelectedBase64(selectedBase64.filter((e) => e !== image));
     URL.revokeObjectURL(image);
-  }
+  };
 
   const uploadHandler = async (e) => {
     e.preventDefault();
@@ -76,42 +174,54 @@ export function ImgUpload() {
         const data = await graphQLFetch(query, {gallery});
         if (!data) {
             console.log('image not uploaded');
-            setUploadStatus(false);
         } else {
             console.log('image uploaded');
-            setUploadStatus(true);
         }
     });
     
   }
   return (
     <section style = {{padding: "2rem 0"}}>
-      <label style = {{
-        margin: "0 auto",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        border: "1px dotted black",
-        borderRadius: "20px",
-        width: "10rem",
-        height: "10rem",
-        cursor: "pointer",
-        fontSize: "large",
-      }}>
-        + Add Images
-        <br />
-        <span style={{fontWeight: "lighter", fontSize: "small", paddingTop: "0.5rem"}}>up to 10 images</span>
-        <input
-          type="file"
-          name="images"
-          onChange={onSelectFile}
-          multiple
-          accept="image/png , image/jpeg, image/webp"
-          style = {{display:"none"}}
-        />
-      </label>
-      <br />
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <PropertyType changeHandler={changeHandler}/>
+            <PropertySize changeHandler={changeHandler}/>
+            <DesignStyle1 changeHandler={changeHandler}/>
+            <DesignStyle2 changeHandler={changeHandler}/>
+            <NoOfBedrooms changeHandler={changeHandler}/>
+          </div>
+          <div className='col'>
+            <label style = {{
+              margin: "0 auto",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              border: "1px dotted black",
+              borderRadius: "20px",
+              width: "10rem",
+              height: "10rem",
+              cursor: "pointer",
+              fontSize: "large",
+            }}>
+              + Add Images
+              <br />
+              <span style={{fontWeight: "lighter", fontSize: "small", paddingTop: "0.5rem"}}>up to 10 images</span>
+              <input
+                type="file"
+                name="images"
+                onChange={onSelectFile}
+                multiple
+                accept="image/png , image/jpeg, image/webp"
+                style = {{display:"none"}}
+              />
+            </label>
+            <br />
+          </div>
+        </div>
+      </div>
+          
 
       {selectedImages.length > 0 &&
         (selectedImages.length > 10 ? (
