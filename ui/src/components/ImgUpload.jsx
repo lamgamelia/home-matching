@@ -15,7 +15,7 @@ function convertToBase64(file){
 function PropertyType(props){
   return (
     <div className="form-group row">
-      <label htmlFor="awesomeness" class="col-sm-6 col-form-label">
+      <label htmlFor="awesomeness" className="col-sm-6 col-form-label">
         Property Type</label>
       <div className="col-sm-6">
         <select className="form-control" name="propertyType" id="awesomeness" onChange={props.changeHandler}>
@@ -32,10 +32,10 @@ function PropertyType(props){
 function PropertySize(props){
   return (
     <div className="form-group row">
-      <label htmlFor="propertySize" class="col-sm-6 col-form-label">
+      <label htmlFor="propertySize" className="col-sm-6 col-form-label">
         Property Size in sqft</label>
-      <div class="col-sm-6">
-        <input type="number" class="form-control" id="propertySize" onChange={props.changeHandler}/>
+      <div className="col-sm-6">
+        <input name="propertySize" type="number" className="form-control" id="propertySize" onChange={props.changeHandler}/>
       </div>
     </div>
   )
@@ -44,7 +44,7 @@ function PropertySize(props){
 function DesignStyle1(props){
   return (
     <div className="form-group row">
-      <label htmlFor="designStyle1" class="col-sm-6 col-form-label">
+      <label htmlFor="designStyle1" className="col-sm-6 col-form-label">
         Primary Design Style</label>
       <div className="col-sm-6">
         <select className="form-control" name="designStyle1" id="designStyle1" onChange={props.changeHandler}>
@@ -64,7 +64,7 @@ function DesignStyle1(props){
 function DesignStyle2(props){
   return (
     <div className="form-group row">
-      <label htmlFor="designStyle2" class="col-sm-6 col-form-label">
+      <label htmlFor="designStyle2" className="col-sm-6 col-form-label">
         Secondary Design Style</label>
       <div className="col-sm-6">
         <select className="form-control" name="designStyle2" id="designStyle2" onChange={props.changeHandler}>
@@ -84,7 +84,7 @@ function DesignStyle2(props){
 function NoOfBedrooms(props){
   return (
     <div className="form-group row">
-      <label htmlFor="noOfBedrooms" class="col-sm-6 col-form-label">
+      <label htmlFor="noOfBedrooms" className="col-sm-6 col-form-label">
         No of Bedrooms</label>
       <div className="col-sm-6">
         <select className="form-control" name="noOfBedrooms" id="noOfBedrooms" onChange={props.changeHandler}>
