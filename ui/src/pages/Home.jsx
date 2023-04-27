@@ -1,5 +1,8 @@
 const Link = ReactRouterDOM.Link;
 const NavLink = ReactRouterDOM.NavLink;
+const { useContext } = React;
+
+import { AuthContext } from "../context/auth.js";
 
 function Display(props){
     const review = props.review;
@@ -13,6 +16,87 @@ function Display(props){
             </div>
             <div>
                 Review: {review.reviewMessage} 
+            </div>
+        </div>
+    )
+}
+
+function Welcome(props){
+    const {user} = useContext(AuthContext)
+    return user ? (
+        <div className='container align-items-center p-0' style={{backgroundColor: "rgba(255, 255, 255, 0.0)", width:'100%'}}>
+            <div className='row g-0 no-gutters justify-content-md-center align-items-center text-center p-3 m-3' style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+            <h1 style={{color: "rgb(0,0,0)"}}>Welcome to homey, {user.username}!</h1>
+            </div>
+            <div className='row' style={{height:"20%"}}></div>
+            <div className='row' style={{width:'100%'}}>
+            <div className="col-md-2" ></div>
+            <div className="col-md-4 p-2 text-center">
+                <div className="p-2 m-2" style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+                <h2>
+                    Are you a designer?  
+                </h2>
+                <br></br>
+                <h5 className="font-weight-bold" >
+                    Start showcasing your projects to home owners today!
+                </h5>
+                <br></br>
+                <Link to="/" className='m-2' ><button style={{cursor:"pointer"}}>Edit My Profile</button></Link>
+                </div>
+            </div>
+            <div className="col-md-4 p-2 text-center">
+                <div className="p-2 m-2" style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+                <h2>
+                    Are you a home owner?  
+                </h2>
+                <br></br>
+                <h5 className="font-weight-bold">
+                    Get matched with dedicated interior designers for free today!
+                </h5>
+                <br></br>
+                <Link to="/matchDesigner" className='m-2'><button style={{cursor:"pointer"}}>Find My Designer!</button></Link>
+                <Link to="/gallery" className='m-2'><button style={{cursor:"pointer"}}>View Gallery</button></Link>
+                </div>
+            </div>
+            <div className="col-md-2"></div>
+            </div>
+        </div>
+    ) : (
+        <div className='container align-items-center p-0' style={{backgroundColor: "rgba(255, 255, 255, 0.0)", width:'100%'}}>
+            <div className='row g-0 no-gutters justify-content-md-center align-items-center text-center p-3 m-3' style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+            <h1 style={{color: "rgb(0,0,0)"}}>Matching Homeowner with Interior Designer</h1>
+            </div>
+            <div className='row' style={{height:"20%"}}></div>
+            <div className='row' style={{width:'100%'}}>
+            <div className="col-md-2" ></div>
+            <div className="col-md-4 p-2 text-center">
+                <div className="p-2 m-2" style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+                <h2>
+                    Are you a designer?  
+                </h2>
+                <br></br>
+                <h5 className="font-weight-bold" >
+                    Register with us to showcase your projects to home owners today!
+                </h5>
+                <br></br>
+                <Link to="/register" className='m-2' ><button style={{cursor:"pointer"}}>Register</button></Link>
+                </div>
+            </div>
+            <div className="col-md-4 p-2 text-center">
+                <div className="p-2 m-2" style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
+                <h2>
+                    Are you a home owner?  
+                </h2>
+                <br></br>
+                <h5 className="font-weight-bold">
+                    Sign up with us to get matched with dedicated interior designers for free today!
+                </h5>
+                <br></br>
+                <Link to="/register" className='m-2'><button style={{cursor:"pointer"}}>Register</button></Link>
+                <Link to="/gallery" className='m-2'><button style={{cursor:"pointer"}}>View Gallery</button></Link>
+                </div>
+            </div>
+            <div className="col-md-2"></div>
             </div>
         </div>
     )
@@ -54,43 +138,7 @@ export class Home extends React.Component {
     return (
     <div>
         <div className= "container-fluid background-image p-5" style={{backgroundImage: "url(/home-design2.jpg)", backgroundSize: "cover", backgroundPosition: "center",}}>
-            <div className='container align-items-center p-0' style={{backgroundColor: "rgba(255, 255, 255, 0.0)", width:'100%'}}>
-                <div className='row g-0 no-gutters justify-content-md-center align-items-center text-center p-3 m-3' style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
-                <h1 style={{color: "rgb(0,0,0)"}}>Matching Homeowner with Interior Designer</h1>
-                </div>
-                <div className='row' style={{height:"20%"}}></div>
-                <div className='row' style={{width:'100%'}}>
-                <div className="col-md-2" ></div>
-                <div className="col-md-4 p-2 text-center">
-                    <div className="p-2 m-2" style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
-                    <h2>
-                        Are you a designer?  
-                    </h2>
-                    <br></br>
-                    <h5 className="font-weight-bold" >
-                        Register with us to showcase your projects to home owners today!
-                    </h5>
-                    <br></br>
-                    <Link to="/register" className='m-2' ><button style={{cursor:"pointer"}}>Register</button></Link>
-                    </div>
-                </div>
-                <div className="col-md-4 p-2 text-center">
-                    <div className="p-2 m-2" style={{backgroundColor: "rgba(255, 255, 255, 0.7)"}}>
-                    <h2>
-                        Are you a home owner?  
-                    </h2>
-                    <br></br>
-                    <h5 className="font-weight-bold">
-                        Sign up with us to get matched with dedicated interior designers for free today!
-                    </h5>
-                    <br></br>
-                    <Link to="/register" className='m-2'><button style={{cursor:"pointer"}}>Register</button></Link>
-                    <Link to="/gallery" className='m-2'><button style={{cursor:"pointer"}}>View Gallery</button></Link>
-                    </div>
-                </div>
-                <div className="col-md-2"></div>
-                </div>
-            </div>
+            <Welcome/>
             </div>
             <div className="container-fluid item-align-center p-0">
             <div className="row g-0 no-gutters item-align-center p-5">

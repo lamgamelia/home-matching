@@ -32,6 +32,7 @@ function LoginStatus(props) {
           <i className="bi bi-person-circle" style={{ color: "rgb(0,0,0)" }}></i>
           <span> {user.username}</span>
         </p>
+        <Link to="/" className="dropdown-item" href="#">My Profile (only designers)</Link>
         <Link to="/" className="dropdown-item" href="#" onClick={logout}>Logout</Link>
       </ul>
     </li>
