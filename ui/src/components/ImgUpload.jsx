@@ -1,4 +1,5 @@
 const { useState, useEffect } = React;
+import graphQLFetch from '../graphql.js';
 
 function convertToBase64(file){
     return new Promise((resolve, reject) => {
@@ -14,6 +15,16 @@ function convertToBase64(file){
 export function ImgUpload() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [selectedBase64, setSelectedBase64] = useState([]);
+  const [galleryData, setGalleryData] = useState({
+    title: 'abc',
+    company: 'def',
+    propertyType: 'Condo',
+    propertySize: 500,
+    designStyle1: 'Modern',
+    designStyle2: 'Nil',
+    noOfBedrooms: 3 
+  })
+  const [uploadStatus, setUploadStatus] = useState(true);
 
   useEffect(() => {{
     console.log(selectedBase64);
@@ -22,10 +33,11 @@ export function ImgUpload() {
   const onSelectFile = async (event) => {
     const selectedFiles = event.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
-    console.log(selectedFilesArray);
-    const Base64Array = await selectedFilesArray.map((file) => {
-        return convertToBase64(file)});
-    console.log(Base64Array);
+    
+    const Base64Array = await Promise.all(
+      selectedFilesArray.map(async (file) => { 
+      return await convertToBase64(file)}));
+    
     const imagesArray = selectedFilesArray.map((file) => {
       return URL.createObjectURL(file);      
     });
@@ -39,9 +51,39 @@ export function ImgUpload() {
 
   const deleteHandler = (image) => {
     setSelectedImages(selectedImages.filter((e) => e !== image));
+    setSelectedBase64(selectedBase64.filter((e) => e !== image));
     URL.revokeObjectURL(image);
   }
 
+  const uploadHandler = async (e) => {
+    e.preventDefault();
+    const query = `mutation addGallery ($gallery: InputGallery!){
+        addGallery (newGallery: $gallery) {
+            id
+            title
+            company
+            propertyType
+            propertySize
+            designStyle1
+            designStyle2
+            noOfBedrooms 
+            datetime
+            image
+        }
+    }`
+    selectedBase64.forEach(async base64 => {
+        const gallery = { ...galleryData, image: base64 }
+        const data = await graphQLFetch(query, {gallery});
+        if (!data) {
+            console.log('image not uploaded');
+            setUploadStatus(false);
+        } else {
+            console.log('image uploaded');
+            setUploadStatus(true);
+        }
+    });
+    
+  }
   return (
     <section style = {{padding: "2rem 0"}}>
       <label style = {{
@@ -83,9 +125,7 @@ export function ImgUpload() {
           <button
             className="btn btn-success"
             style = {{display:"block"}}
-            onClick={() => {
-              console.log(selectedImages);
-            }}
+            onClick={uploadHandler}
           >
             UPLOAD {selectedImages.length} IMAGE
             {selectedImages.length === 1 ? "" : "S"}
