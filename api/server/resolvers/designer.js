@@ -1,8 +1,25 @@
 const { db } = require('../db.js');
 
-async function listDesigner()
+async function listDesigner(_, {propertyCondition="",feeLevel=0,propertyType="",designStyle=""})
     {
-      const result = await db.collection('designerData').find({}).toArray();
+      let filter = {};
+      if (propertyCondition){
+        console.log(propertyCondition);
+        filter.propertyCondition = {$all:[propertyCondition]};
+      }
+      if (feeLevel!==0){
+        console.log(feeLevel);
+        filter.feeLevel = {$lte:feeLevel};
+      }
+      if (propertyType){
+        console.log(propertyType);
+        filter.propertyType = {$all:[propertyType]};
+      }
+      if (designStyle){
+        console.log(designStyle);
+        filter.designStyle = {$all:[designStyle]};
+      }
+      const result = await db.collection('designerData').find(filter).toArray();
       return result;
     };
 

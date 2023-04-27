@@ -1,4 +1,5 @@
 import {SingleDesigner} from "./SingleDesigner.jsx";
+import graphQLFetch from '../graphql.js';
 
 class Recommended3Designers extends React.Component{
   constructor(props){
@@ -35,22 +36,22 @@ export class Designers extends React.Component {
       this.state = {designers:[]};
     }
     async loadData(){
-      const query = `query{
+      const query = `query listDesigner {
         listDesigner{
-          id title designStyle description
+          id,
+          title,
+          email,
+          mobile,
+          designStyle,
+          propertyCondition,
+          feeLevel,
+          propertyType,
+          description,
         }
       }`;
 
-      const response = await fetch('http://localhost:8000/graphql',{
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({query})
-      });
-
-      const body = await response.text();
-      const result = JSON.parse(body);
-      this.setState({designers: result.data.listDesigner})
-      // console.log(this.state.designers);
+      const data = await graphQLFetch(query);
+      this.setState({designers: data.listDesigner})
     }
     
     componentDidMount(){

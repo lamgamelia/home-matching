@@ -1,8 +1,5 @@
-const sudo_designers = [{id:1,title:"Designer1",info:"Mordern"},
-                        {id:2,title:"Designer2",info:"Old Fashion"},
-                        {id:3,title:"Designer3",info:"Cyber Punk"}]
-
 import {SingleDesigner} from "./SingleDesigner.jsx";
+import graphQLFetch from '../graphql.js';
 
 function MatchResult(props){
   return(
@@ -24,11 +21,16 @@ function MatchResult(props){
 class HouseType extends React.Component{
   constructor(props){
     super(props);
+    this.state = {propertyCondition:'',propertyType:'',feeLevel:''};
   }
 
-  handleSubmit(){
-
+  async handleSubmit(){
+    let feeLevel = document.getElementById('feeLevel').value;
+    if (feeLevel!=0){await this.setState({feeLevel:feeLevel});}
+    await this.props.updateFilter(this.state.feeLevel,this.state.propertyType, this.state.propertyCondition);
+    this.props.nextpage();
   }
+
 
   render(){
     return(
@@ -37,16 +39,16 @@ class HouseType extends React.Component{
           <h2 style={{color: "rgb(0,0,0)"}}>Tell Us More About your Home!</h2>
           {/*#####################*/}
           <div className="mt-5">
-            <h4>Condition</h4>
+            <h4>Property Condition</h4>
             <div className="btn-group btn-group-toggle" data-toggle="buttons">
-              <label className="btn btn-primary">
-                <input type="radio" name="options" id="option1" autoComplete="off" /> New
+              <label className="btn btn-primary" onClick = {()=>this.setState({propertyCondition:'New'})}>
+                <input type="radio" name="options" id="conditionNew" autoComplete="off" /> New
               </label>
               
               <div className="mx-2"></div> 
 
-              <label className="btn btn-primary">
-                <input type="radio" name="options" id="option2" autoComplete="off" /> Resale
+              <label className="btn btn-primary" onClick = {()=>this.setState({propertyCondition:'Resale'})}>
+                <input type="radio" name="options" id="conditionResale" autoComplete="off" /> Resale
               </label>
             </div>
 
@@ -55,28 +57,28 @@ class HouseType extends React.Component{
 
           {/*#####################*/}
           <div className="mt-5">
-            <h4>Condition</h4>
+            <h4>Property Type</h4>
             <div className="btn-group btn-group-toggle" data-toggle="buttons">
-              <label className="btn btn-primary">
-                <input type="radio" name="options" id="option1" autoComplete="off" /> HDB
+              <label className="btn btn-primary" onClick = {()=>this.setState({propertyType:'HDB'})}>
+                <input type="radio" name="options" id="TypeHDB" autoComplete="off" /> HDB
               </label>
               
               <div className="mx-2"></div> 
 
-              <label className="btn btn-primary">
-                <input type="radio" name="options" id="option2" autoComplete="off" /> Condo
+              <label className="btn btn-primary" onClick = {()=>this.setState({propertyType:'Condo'})}>
+                <input type="radio" name="options" id="TypeCondo" autoComplete="off" /> Condo
               </label>
 
               <div className="mx-2"></div> 
 
-              <label className="btn btn-primary">
-                <input type="radio" name="options" id="option2" autoComplete="off" /> Land
+              <label className="btn btn-primary" onClick = {()=>this.setState({propertyType:'Land'})}>
+                <input type="radio" name="options" id="TypeLand" autoComplete="off" /> Land
               </label>
 
               <div className="mx-2"></div> 
 
-              <label className="btn btn-primary">
-                <input type="radio" name="options" id="option2" autoComplete="off" /> Commercial
+              <label className="btn btn-primary" onClick = {()=>this.setState({propertyType:'Commercial'})}>
+                <input type="radio" name="options" id="TypeCommercial" autoComplete="off" /> Commercial
               </label>
             </div>  
           </div>
@@ -85,17 +87,17 @@ class HouseType extends React.Component{
           {/*#####################*/}
           <div className="mt-5">
             <h4>Budget</h4>
-            <select className="form-select" aria-label="Default select example">
-              <option value>Select a Budget Range</option>
-              <option value="1">10k-30k </option>
-              <option value="2">31k-50k</option>
-              <option value="3">51k-80k</option>
-              <option value="4">Over 80k</option>
+            <select className="form-select" aria-label="Default select example" id="feeLevel"> 
+              <option value={0}>Select a Budget Range</option>
+              <option value={1}>10k-30k </option>
+              <option value={2}>31k-50k</option>
+              <option value={3}>51k-80k</option>
+              <option value={4}>Over 80k</option>
             </select>
           </div>
 
           <div className="mt-5 justify-content-md-center align-items-center">
-            <button type="button" className="btn btn-primary" onClick={this.props.nextpage}>Next</button>
+            <button type="button" className="btn btn-primary" onClick={()=>this.handleSubmit()}>Next</button>
           </div>
 
         </div>
@@ -107,6 +109,12 @@ class HouseType extends React.Component{
 class HouseStyle extends React.Component{
   constructor(){
     super();
+    this.state = {designStyle:''};
+  }
+
+  async handleSubmit(){
+    if(this.state.designStyle){await this.props.updateFilter('','','',this.state.designStyle)};
+    this.props.nextpage();
   }
 
   render(){
@@ -116,18 +124,18 @@ class HouseStyle extends React.Component{
         <div className="mt-5">
             <h4>Select the type you prefer most:</h4>
             <div className="btn-group btn-group-toggle" data-toggle="buttons">
-              <label className="btn">
-                <input type="radio" name="options" id="option1" autoComplete="off" />
+              <label className="btn" onClick={()=>this.setState({designStyle:'Modern'})}>
+                <input type="radio" name="options" id="styleModern" autoComplete="off" />
                 <img src="home-design.jpg" alt="My Image" className="img-fluid"/>
               </label>
 
-              <label className="btn">
-                <input type="radio" name="options" id="option2" autoComplete="off" />
+              <label className="btn" onClick={()=>this.setState({designStyle:'Artistic'})}>
+                <input type="radio" name="options" id="styleArtistic" autoComplete="off" />
                 <img src="home-design.jpg" alt="My Image" className="img-fluid"/>
               </label>
 
-              <label className="btn">
-                <input type="radio" name="options" id="option3" autoComplete="off" />
+              <label className="btn" onClick={()=>this.setState({designStyle:'Traditional'})}>
+                <input type="radio" name="options" id="styleTraditional" autoComplete="off" />
                 <img src="home-design.jpg" alt="My Image" className="img-fluid"/>
               </label>
             </div>
@@ -136,7 +144,7 @@ class HouseStyle extends React.Component{
         <div className="row mt-5 justify-content-md-center align-items-center">
             <button type="button" className="btn btn-primary" onClick={this.props.prevpage}>Back</button>
             <div className="mx-5"/>
-            <button type="button" className="btn btn-primary" onClick={this.props.nextpage}>Next</button>
+            <button type="button" className="btn btn-primary" onClick={()=>this.handleSubmit()}>Next</button>
         </div>
             
 
@@ -149,32 +157,29 @@ class HouseStyle extends React.Component{
 export class Match extends React.Component {
     constructor() {
       super();
-      this.state = {selector:1,designers:[],feeLevel:4,designStyle:'All',houseCondition:'All'};
+      this.state = {selector:1,designers:[],feeLevel:0,designStyle:'',propertyCondition:'',propertyType:''};
       this.nextpage = this.nextpage.bind(this);
       this.prevpage = this.prevpage.bind(this);
+      this.updateFilter = this.updateFilter.bind(this);
     }
 
-    async loadData(){
-      const query = `query{
-        listDesigner{
-          id title designStyle description
+    async matchDesigner(){
+      const query = `query listDesigner($propertyCondition:String,$propertyType:String,$designStyle:String,$feeLevel:Int){
+        listDesigner (houseCondition:$propertyCondition,houseType:$propertyType,designStyle:$designStyle,feeLevel:$feeLevel){
+          id,
+          title,
+          email,
+          mobile,
+          designStyle,
+          propertyCondition,
+          feeLevel,
+          propertyType,
+          description,
         }
       }`;
-
-      const response = await fetch('http://localhost:8000/graphql',{
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({query})
-      });
-
-      const body = await response.text();
-      const result = JSON.parse(body);
-      this.setState({designers: result.data.listDesigner})
-      // console.log(this.state.designers);
-    }
-
-    componentDidMount(){
-      this.loadData();
+      const variables = {"propertyCondition": this.state.propertyCondition,"propertyType": this.state.propertyType,"designStyle": this.state.designStyle,"feeLevel":this.state.feeLevel};
+      const data = await graphQLFetch(query,variables);
+      this.setState({designers: data.listDesigner})
     }
 
     prevpage(){
@@ -183,6 +188,24 @@ export class Match extends React.Component {
 
     nextpage(){
       this.setState({selector:this.state.selector+1});
+    }
+
+    async updateFilter(feeLevel=0,propertyType='',propertyCondition='',designStyle=''){
+      let stateUpdate = {};
+      if (feeLevel!=0){
+        stateUpdate.feeLevel = feeLevel;
+      }
+      if (propertyType){
+        stateUpdate.propertyType = propertyType;
+      }
+      if (propertyCondition){
+        stateUpdate.propertyCondition = propertyCondition;
+      }
+      if (designStyle){
+        stateUpdate.designStyle = designStyle;
+      }
+      await this.setState(stateUpdate);
+      await this.matchDesigner();
     }
 
     render(){
@@ -195,10 +218,9 @@ export class Match extends React.Component {
                 </div>
             </div>
         </div>
-        
-          {this.state.selector===1?<HouseType nextpage={this.nextpage} prevpage={this.prevpage}/>:<div/>}
-          {this.state.selector===2?<HouseStyle nextpage={this.nextpage} prevpage={this.prevpage}/>:<div/>}
-          {this.state.selector===3?<MatchResult prevpage={this.prevpage} style={"Modern"} designers = {this.state.designers}/>:<div/>}
+          {this.state.selector===1?<HouseType nextpage={this.nextpage} prevpage={this.prevpage} updateFilter = {this.updateFilter}/>:<div/>}
+          {this.state.selector===2?<HouseStyle nextpage={this.nextpage} prevpage={this.prevpage} updateFilter = {this.updateFilter}/>:<div/>}
+          {this.state.selector===3?<MatchResult prevpage={this.prevpage} style={this.state.designStyle} designers = {this.state.designers}/>:<div/>}
 
       </div>);
     }

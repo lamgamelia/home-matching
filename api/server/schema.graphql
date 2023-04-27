@@ -39,8 +39,10 @@ type Designer{
     title: String!
     email: String!
     mobile: String!
-    designStyle: String!
-    houseCondition: [String!]!
+    designStyle: [String!]
+    propertyCondition: [String!]!
+    feeLevel: Int!
+    propertyType: [String!]!
     description: String!
 }
 
@@ -96,7 +98,7 @@ type Query{
     listMessage: [Message]!
     listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int): [Gallery]!
     listReview: [Review]
-    listDesigner: [Designer]
+    listDesigner(houseCondition:String,feeLevel:Int,houseType:String,designStyle:String): [Designer]
 }
 
 type Mutation {
