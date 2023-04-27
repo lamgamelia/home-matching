@@ -50,7 +50,7 @@ export class Designers extends React.Component {
       const body = await response.text();
       const result = JSON.parse(body);
       this.setState({designers: result.data.listDesigner})
-      console.log(this.state.designers);
+      // console.log(this.state.designers);
     }
     
     componentDidMount(){
