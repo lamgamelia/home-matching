@@ -2,6 +2,9 @@ const Link = ReactRouterDOM.Link;
 const { useContext, useState, useEffect } = React;
 import graphQLFetch from '../graphql.js';
 import { AuthContext } from '../context/auth.js';
+import jwt_decode from 'jwt-decode';
+
+
 
 export function Login (props) {
   const context = useContext(AuthContext);
@@ -10,9 +13,23 @@ export function Login (props) {
     password: '',
   });
 
-  useEffect(() => {{
-    console.log(userData);
-  }}, [userData])
+  async function handleCallbackResponse(response){
+    var userObject = jwt_decode(response.credential);
+    setUserData({username:userObject.name});
+    context.login(userData);
+    console.log(userObject)
+  }
+  useEffect(() => {
+  /* global google */
+  google.accounts.id.initialize({
+    client_id: "363026773777-eit7qfbecq2ei2pmdmp9o9ib81d46kqo.apps.googleusercontent.com",
+    callback: handleCallbackResponse
+  });
+  google.accounts.id.renderButton(
+    document.getElementById("signInDiv"),
+    {type:"icon", theme:"outline"}
+  );
+}, [userData])
 
   const handleInputs = (e) => {
     const name = e.target.name;
@@ -45,7 +62,6 @@ export function Login (props) {
 
   return (
     <form className="container">
-      
       <div className="form-outline mb-4">
         <input type="text" id="form2Example1" name="username" onChange={handleInputs} className="form-control" />
         <label className="form-label" htmlFor="form2Example1">Username</label>
@@ -74,14 +90,14 @@ export function Login (props) {
 
       <div className="text-center">
         <p>Not a member? <a href="/register">Register</a></p>
-        <p>or sign up with:</p>
+        <p>or sign in with:</p>
+        
         <button type="button" className="btn btn-link btn-floating mx-1">
           <i className="bi bi-facebook"></i>
         </button>
-
         <button type="button" className="btn btn-link btn-floating mx-1">
-          <i className="bi bi-google"></i>
-        </button>
+          <div id = "signInDiv"></div>
+        </button> 
 
         <button type="button" className="btn btn-link btn-floating mx-1">
           <i className="bi bi-twitter"></i>
