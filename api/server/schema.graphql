@@ -29,6 +29,8 @@ type Review{
     id: Int!
     name: String!
     email: String!
+    designer: String
+    rating: Int!
     reviewMessage: String
     datetime: GraphQLDate!
 }
@@ -55,8 +57,8 @@ input InputMessage {
 }
 
 input InputReview {
-    name: String!
-    email: String!
+    designer: String
+    rating: Int
     reviewMessage: String
 }
 

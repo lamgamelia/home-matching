@@ -14,7 +14,7 @@ export function Login (props) {
   });
 
   async function handleCallbackResponse(response){
-    var userObject = jwt_decode(response.credential);
+    var userObject = await jwt_decode(response.credential);
     setUserData({username:userObject.name});
     context.login(userData);
     console.log(userObject)
@@ -29,6 +29,7 @@ export function Login (props) {
     document.getElementById("signInDiv"),
     {type:"icon", theme:"outline"}
   );
+  console.log(userData);
 }, [userData])
 
   const handleInputs = (e) => {
@@ -54,7 +55,7 @@ export function Login (props) {
         console.log('user not logged in');
       } else {
         console.log('user logged in');
-        context.login(userData);
+        context.login(data.login);
         setUserData({...userData, username: '', email: ''})
         props.history.push('/');
       }

@@ -10,6 +10,7 @@ const app = express();
 const server = new ApolloServer({
   typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),
   resolvers,
+  context: ({ req }) => ({ req }),
   formatError: error => {
     console.log(error);
     return error;
