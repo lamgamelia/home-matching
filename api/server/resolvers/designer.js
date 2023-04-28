@@ -1,5 +1,10 @@
 const { db } = require('../db.js');
 
+async function selectDesignerByID(_,{id}){
+  const result = await db.collection('designerData').findOne({id:id});
+  return result;
+}
+
 async function listDesigner(_, {propertyCondition="",feeLevel=0,propertyType="",designStyle=""})
     {
       let filter = {};
@@ -45,9 +50,10 @@ async function addDesigner (_, {newDesigner})
 
 module.exports = {
     Query: {
-        listDesigner
+      selectDesignerByID,
+      listDesigner,
     },
     Mutation: {
-		addDesigner
+		  addDesigner ,
 	}
 };

@@ -99,6 +99,7 @@ type Query{
     listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int): [Gallery]!
     listReview: [Review]
     listDesigner(houseCondition:String,feeLevel:Int,houseType:String,designStyle:String): [Designer]
+    selectDesignerByID(id:Int!): Designer
 }
 
 type Mutation {
