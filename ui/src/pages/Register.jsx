@@ -86,7 +86,7 @@ export function Register() {
         <button type="button" className="btn btn-primary btn-block mb-4" onClick={handleSubmit}>
           Sign up</button>
 
-        <div className="text-center">
+        {/**<div className="text-center">
           
           <p>or sign up with:</p>
           <button type="button" className="btn btn-link btn-floating mx-1">
@@ -104,7 +104,7 @@ export function Register() {
           <button type="button" className="btn btn-link btn-floating mx-1">
             <i className="bi bi-github"></i>
           </button>
-        </div>
+    </div>**/}
       </form>
     );
    
