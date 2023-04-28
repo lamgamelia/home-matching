@@ -6,17 +6,19 @@ import { AuthContext } from "../context/auth.js";
 
 function Display(props){
     const review = props.review;
+    const starArray = Array(review.rating).fill(1).map(i => <i className="bi bi-star-fill text-warning"></i>);
+    
     return(
         <div className="col-md-4 m-0 d-flex flex-column align-items-center" style={{paddingTop: "30px", paddingBottom: "30px"}} >
             <div>
                 <img className="image-rounded p-2"src="/homey.png"/>
             </div>
+            <h6>{review.designer}</h6>
             <div>
-                Name: {review.name} 
+                {starArray}          
             </div>
-            <div>
-                Review: {review.reviewMessage} 
-            </div>
+            <p> {review.reviewMessage} </p>
+            <p> {review.name} </p>   
         </div>
     )
 }
@@ -115,7 +117,7 @@ export class Home extends React.Component {
     async loadData(){
         const query = `query{
             listReview{
-                id name reviewMessage
+                id name designer rating reviewMessage
             }
         }`;
 
