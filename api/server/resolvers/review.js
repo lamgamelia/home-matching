@@ -3,7 +3,7 @@ const checkAuth = require('../util/check-auth.js');
 
 async function listReview()
     {
-      const messages = await db.collection('reviewData').find({}).toArray();
+      const messages = await db.collection('reviewData').aggregate([{$sort : { id: -1}}]).toArray();
       return messages;
     };
 
