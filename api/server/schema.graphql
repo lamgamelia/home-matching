@@ -4,7 +4,7 @@ type Gallery{
     _id: ID
     id: Int!
     title: String!
-    designerID:Int!
+    designerUsername:String!
     company: String!
     propertyType: String!
     propertySize: Int!
@@ -41,13 +41,14 @@ type Review{
 type Designer{
     _id: ID
     id: Int!
+    username: String
     title: String!
     email: String!
     mobile: String!
     designStyle: [String!]
-    propertyCondition: [String!]!
+    propertyCondition: [String!]
     feeLevel: Int!
-    propertyType: [String!]!
+    propertyType: [String!]
     description: String!
 }
 
@@ -70,7 +71,7 @@ input InputReview {
 
 input InputGallery {
     title: String!
-    designerID:Int!
+    designerUsername:String!
     company: String!
     propertyType: String!
     propertySize: Int!
@@ -82,9 +83,13 @@ input InputGallery {
 
 input InputDesigner{
     title: String!
+    username: String
     email: String!
     mobile: String!
-    designStyle: String!
+    designStyle: [String!]    
+    propertyCondition: [String!]
+    feeLevel: Int!
+    propertyType: [String!]
     description: String!
 }
 
@@ -105,7 +110,7 @@ input RegisterInput{
 
 type Query{
     listMessage(email:String): [Message]!
-    listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int, designerID:Int): [Gallery]!
+    listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int, designerUsername:String): [Gallery]!
     listReview: [Review]
     listDesigner(houseCondition:String,feeLevel:Int,houseType:String,designStyle:String): [Designer]
     selectDesignerByID(id:Int!): Designer
@@ -118,4 +123,5 @@ type Mutation {
     register(registerInput: RegisterInput): User!
     login(username: String!, password: String!): User!
     addDesigner(newDesigner: InputDesigner): Designer
+    deleteDesignerbyUsername(myUsername: String!): Boolean!
 }

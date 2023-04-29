@@ -44,7 +44,7 @@ function Welcome(props){
                     Start showcasing your projects to home owners today!
                 </h5>
                 <br></br>
-                <Link to="/" className='m-2' ><button style={{cursor:"pointer"}}>Edit My Profile</button></Link>
+                <Link to="/myProfile" className='m-2' ><button style={{cursor:"pointer"}}>Edit My Profile</button></Link>
                 </div>
             </div>
             <div className="col-md-4 p-2 text-center">

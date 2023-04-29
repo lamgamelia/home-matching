@@ -47,6 +47,10 @@ async function addDesigner (_, {newDesigner})
       return addedDesigner;
   };
 
+async function deleteDesignerbyUsername(_,{myUsername}){
+    const result = await db.collection('designerData').deleteOne({username: myUsername});
+    return result.deletedCount==1;
+  }
 
 module.exports = {
     Query: {
@@ -55,5 +59,6 @@ module.exports = {
     },
     Mutation: {
 		  addDesigner ,
+      deleteDesignerbyUsername,
 	}
 };

@@ -70,6 +70,7 @@ export class Designers extends React.Component {
         listDesigner{
           id,
           title,
+          username,
           email,
           mobile,
           designStyle,
