@@ -4,7 +4,7 @@ type Gallery{
     _id: ID
     id: Int!
     title: String!
-    designerID:Int!
+    designerID:Int
     company: String!
     propertyType: String!
     propertySize: Int!
@@ -40,13 +40,14 @@ type Review{
 type Designer{
     _id: ID
     id: Int!
+    username: String
     title: String!
     email: String!
     mobile: String!
     designStyle: [String!]
-    propertyCondition: [String!]!
+    propertyCondition: [String!]
     feeLevel: Int!
-    propertyType: [String!]!
+    propertyType: [String!]
     description: String!
 }
 
@@ -69,7 +70,7 @@ input InputReview {
 
 input InputGallery {
     title: String!
-    designerID:Int!
+    designerID:Int
     company: String!
     propertyType: String!
     propertySize: Int!
@@ -81,9 +82,13 @@ input InputGallery {
 
 input InputDesigner{
     title: String!
+    username: String
     email: String!
     mobile: String!
-    designStyle: String!
+    designStyle: [String!]    
+    propertyCondition: [String!]
+    feeLevel: Int!
+    propertyType: [String!]
     description: String!
 }
 
