@@ -56,6 +56,15 @@ export function MyProfile () {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const delquery = `mutation deleteDesignerbyUsername ($myUsername: String!){
+            deleteDesignerbyUsername (myUsername: $myUsername)
+        }`
+        const deletion = await graphQLFetch(delquery, {myUsername});
+        if (!deletion) {
+            console.log('profile not deleted');
+        } else {
+            console.log('profile deleted', deletion);
+        }
         const query = `mutation addDesigner ($designer: InputDesigner!){
             addDesigner (newDesigner: $designer) {
                 id

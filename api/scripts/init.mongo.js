@@ -159,6 +159,7 @@ const initGalleryData = [{
 const initDesignerData = [
   {id:1,
   title : 'No1 Designer',
+  username: 'No1 Designer',
   designStyle: ['Modern','Traditional'],
   description: 'Designer focus in modern style',
   propertyCondition: ['New','Resale'],
@@ -169,6 +170,7 @@ const initDesignerData = [
 
   {id:2,
   title : 'No2 Designer',
+  username: 'No2 Designer',
   designStyle: ['Artistic','Traditional'],
   description: 'Designer focus in artistic style',
   propertyCondition: ['Resale'],
@@ -179,6 +181,7 @@ const initDesignerData = [
 
   {id:3,
   title : 'No3 Designer',
+  username: 'No3 Designer',
   designStyle: ['Traditional'],
   description: 'Designer focus in artistic style',
   propertyCondition: ['New'],
@@ -188,7 +191,8 @@ const initDesignerData = [
   mobile: '000003',},
 
   {id:4,
-  title : 'No3 Designer',
+  title : 'No4 Designer',
+  username: 'No4 Designer',
   designStyle: ['Artistic','Traditional'],
   description: 'Designer focus in artistic style',
   propertyCondition: ['New','Resale'],
@@ -198,7 +202,8 @@ const initDesignerData = [
   mobile: '000004',},
 
   {id:5,
-  title : 'No3 Designer',
+  title : 'No5 Designer',
+  username: 'No5 Designer',
   designStyle: ['Modern'],
   description: 'Designer focus in artistic style',
   propertyCondition: ['New','Resale'],
@@ -209,7 +214,8 @@ const initDesignerData = [
 
   
   {id:6,
-  title : 'No3 Designer',
+  title : 'No6 Designer',
+  username: 'No6 Designer',
   designStyle: ['Artistic','Traditional'],
   description: 'Designer focus in artistic style',
   propertyCondition: ['New','Resale'],
@@ -219,7 +225,8 @@ const initDesignerData = [
   mobile: '000006',},
   
   {id:7,
-  title : 'No3 Designer',
+  title : 'No7 Designer',
+  username: 'No7 Designer',
   designStyle: ['Modern','Artistic'],
   description: 'Designer focus in artistic style',
   propertyCondition: ['New','Resale'],
