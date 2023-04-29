@@ -1,34 +1,6 @@
-// import {SingleDesigner} from "./SingleDesigner.jsx";
+import {SingleDesigner} from "./SingleDesigner.jsx";
 import graphQLFetch from '../graphql.js';
-
-
-export class SingleDesigner extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
-  handleClick(e){
-    e.preventDefault();
-  }
-
-  render(){
-    return(
-      <div className="row g-0 bg-body-secondary position-relative">
-        <div className="col-md-6 mb-md-0 p-md-4">
-          <img src="home-design.jpg" className="w-100" alt={this.props.designer.title}/>
-        </div>
-        <div className="col-md-6 p-4 ps-md-0">
-          <h5 className="mt-0">{this.props.designer.title}</h5>
-          <h6>Style:{this.props.designer.designStyle}</h6>
-          <h6>Email:{this.props.designer.email}</h6>
-          <h6>Mobile:{this.props.designer.mobile}</h6>
-          <p>{this.props.designer.description}</p>
-          <a href="/designers" className="btn btn-primary">More Infomation</a>
-        </div>
-      </div>
-    );
-  }
-}
+import {DesignerProfile} from "./DesignerProfile.jsx"
 
 function MatchResult(props){
   return(
@@ -37,7 +9,7 @@ function MatchResult(props){
         <p>You are into the {props.style} design that maximises space for your property.</p>
         <p>These Designers may suit your preference</p>
         <div className="row no-gutters item-align-center p-5  text-left">
-          {props.designers.map((designer)=>(<SingleDesigner key={designer.id} designer={designer}/>))}
+          {props.designers.map((designer)=>(<SingleDesigner key={designer.id} designer={designer} selectDesigner={props.selectDesigner}/>))}
         </div>
         <div className="mt-2 justify-content-md-center align-items-center">
             <button type="button" className="btn btn-primary" onClick={props.prevpage}>Back</button>
@@ -186,10 +158,11 @@ class HouseStyle extends React.Component{
 export class Match extends React.Component {
     constructor() {
       super();
-      this.state = {selector:1,designers:[],feeLevel:0,designStyle:'',propertyCondition:'',propertyType:''};
+      this.state = {selector:1,designers:[],feeLevel:0,designStyle:'',propertyCondition:'',propertyType:'',selectedDesigner:null};
       this.nextpage = this.nextpage.bind(this);
       this.prevpage = this.prevpage.bind(this);
       this.updateFilter = this.updateFilter.bind(this);
+      this.selectDesigner = this.selectDesigner.bind(this);
     }
 
     async matchDesigner(){
@@ -237,6 +210,15 @@ export class Match extends React.Component {
       await this.matchDesigner();
     }
 
+    selectDesigner(designer=null){
+      if (designer){
+        this.setState({selectedDesigner:designer,selector:4});
+      }else{
+        this.setState({selector:3});
+      }
+      
+    }
+
     render(){
       return (
       <div>
@@ -249,8 +231,8 @@ export class Match extends React.Component {
         </div>
           {this.state.selector===1?<HouseType nextpage={this.nextpage} prevpage={this.prevpage} updateFilter = {this.updateFilter}/>:<div/>}
           {this.state.selector===2?<HouseStyle nextpage={this.nextpage} prevpage={this.prevpage} updateFilter = {this.updateFilter}/>:<div/>}
-          {this.state.selector===3?<MatchResult prevpage={this.prevpage} style={this.state.designStyle} designers = {this.state.designers}/>:<div/>}
-
+          {this.state.selector===3?<MatchResult prevpage={this.prevpage} style={this.state.designStyle} designers = {this.state.designers} selectDesigner={this.selectDesigner}/>:<div/>}
+          {this.state.selector===4?<DesignerProfile designer={this.state.selectedDesigner} selectDesigner={this.selectDesigner}/>:<div/>}
       </div>);
     }
   };
