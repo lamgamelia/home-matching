@@ -4,6 +4,7 @@ type Gallery{
     _id: ID
     id: Int!
     title: String!
+    designerID:Int!
     company: String!
     propertyType: String!
     propertySize: Int!
@@ -29,8 +30,6 @@ type Review{
     id: Int!
     name: String!
     email: String!
-    designer: String
-    rating: Int!
     reviewMessage: String
     datetime: GraphQLDate!
 }
@@ -57,13 +56,14 @@ input InputMessage {
 }
 
 input InputReview {
-    designer: String
-    rating: Int
+    name: String!
+    email: String!
     reviewMessage: String
 }
 
 input InputGallery {
     title: String!
+    designerID:Int!
     company: String!
     propertyType: String!
     propertySize: Int!
@@ -98,7 +98,7 @@ input RegisterInput{
 
 type Query{
     listMessage: [Message]!
-    listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int): [Gallery]!
+    listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int, designerID:Int): [Gallery]!
     listReview: [Review]
     listDesigner(houseCondition:String,feeLevel:Int,houseType:String,designStyle:String): [Designer]
     selectDesignerByID(id:Int!): Designer

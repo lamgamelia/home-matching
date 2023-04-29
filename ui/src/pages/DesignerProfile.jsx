@@ -32,25 +32,17 @@ function Display(props){
 export class DesignerProfile extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {designer:this.props.designer, id: 1,projects:[]};
+    this.state = {designer:this.props.designer,projects:[]};
   }
 
   async loadGalleryData(){
-    const query = `query{
-      listGallery{
-        id title propertyType designStyle1 designStyle2 noOfBedrooms image
+    const query = `query ($designerID:Int){
+      listGallery (designerID:$designerID){
+        id title designerID propertyType designStyle1 designStyle2 noOfBedrooms image
       }
     }`;
-
-    const response = await fetch('http://localhost:8000/graphql',{
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({query})
-    });
-
-    const body = await response.text();
-    const result = JSON.parse(body);
-    this.setState({projects: result.data.listGallery})
+    const data = await graphQLFetch(query,{designerID:this.props.designer.id});
+    this.setState({projects: data.listGallery})
   }
 
   componentDidMount(){
@@ -61,7 +53,7 @@ export class DesignerProfile extends React.Component{
     return(
       <div>
         <div className="row g-0 bg-body-secondary position-relative bg-white align-items-center mx-auto my-auto" style={{position:'relative'}}>
-          <i class="bi bi-arrow-left btn btn-primary" onClick={()=>{this.props.selectDesigner()}}>Back</i>
+          <i className="bi bi-arrow-left btn btn-primary" onClick={()=>{this.props.selectDesigner()}}>Back</i>
         </div>
         <div className="row g-0 bg-body-secondary position-relative bg-light align-items-center mx-auto my-auto" style={{position:'relative'}}>
           <div className="col-md-4 mb-md-0 p-md-4 align-items-center mx-auto my-auto">
