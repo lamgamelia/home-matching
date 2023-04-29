@@ -5,13 +5,42 @@ db.designerData.remove({});
 
 
 initMessageData = [{	
-				id: 0, 
-				name: 'senderName', 
-				email: 'senderEmail', 
-			 	subject: 'messageSubject', 
-				message: 'messageContent', 
-				datetime: new Date(),
-			   }]
+  id: 0, 
+  name: 'Alex', 
+  email: 'alex@gmail.com',
+  company: 'designer.co',
+  receiveremail: 'cxloh.eric@gmail.com', 
+  message: 'Hi Eric, I am Alex from designer.co', 
+  datetime: new Date(),
+},
+{	
+  id: 1, 
+  name: 'Chris', 
+  email: 'chris@gmail.com', 
+  company: 'designyourhome.co',
+  receiveremail: 'cxloh.eric@gmail.com',
+  message: 'Hi Eric, I am Chris from designyourhome.co', 
+  datetime: new Date(),
+},
+{	
+  id: 2, 
+  name: 'Eric', 
+  email: 'cxloh.eric@gmail.com',
+  company: '',
+  receiveremail: 'alex@gmail.com', 
+  message: 'Hi Alex, how much does it cost to renovate a 3-room hdb?', 
+  datetime: new Date(),
+},
+{	
+  id: 3, 
+  name: 'Alex', 
+  email: 'alex@gmail.com',
+  company: 'designer.co',
+  receiveremail: 'cxloh.eric@gmail.com', 
+  message: 'roughly $50,000', 
+  datetime: new Date(),
+},
+]
 
 initReviewData =[
 {

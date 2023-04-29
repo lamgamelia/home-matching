@@ -11,14 +11,32 @@ export function Login (props) {
   const [userData, setUserData] = useState({
     username: '',
     password: '',
+    email: '',
+    message: []
   });
 
   async function handleCallbackResponse(response){
-    var userObject = await jwt_decode(response.credential);
-    setUserData({username:userObject.name});
-    context.login(userData);
-    console.log(userObject)
+    const userObject = jwt_decode(response.credential);
+    const name = userObject.name;
+    const email = userObject.email;
+    
+    const query = `query{
+      listMessage(email:"${email}"){
+        id name email company receiveremail message datetime
+      }
+    }`;
+
+    const rsp = await fetch('http://localhost:8000/graphql',{
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({query})
+    });
+
+    const body = await rsp.text();
+    const result = JSON.parse(body);
+    setUserData({...userData, username: name, email: email, message:result.data.listMessage})
   }
+
   useEffect(() => {
   /* global google */
   google.accounts.id.initialize({
@@ -27,10 +45,14 @@ export function Login (props) {
   });
   google.accounts.id.renderButton(
     document.getElementById("signInDiv"),
-    {type:"icon", theme:"outline"}
+    {theme:"outline"}
   );
-  console.log(userData);
-}, [userData])
+  }, [])
+  useEffect(() => {
+    if (userData.email!== ""){
+      context.login(userData);
+    }
+  }, [userData])
 
   const handleInputs = (e) => {
     const name = e.target.name;
@@ -56,7 +78,6 @@ export function Login (props) {
       } else {
         console.log('user logged in');
         context.login(data.login);
-        setUserData({...userData, username: '', email: ''})
         props.history.push('/');
       }
   }
@@ -94,19 +115,8 @@ export function Login (props) {
         <p>or sign in with:</p>
         
         <button type="button" className="btn btn-link btn-floating mx-1">
-          <i className="bi bi-facebook"></i>
-        </button>
-        <button type="button" className="btn btn-link btn-floating mx-1">
           <div id = "signInDiv"></div>
         </button> 
-
-        <button type="button" className="btn btn-link btn-floating mx-1">
-          <i className="bi bi-twitter"></i>
-        </button>
-
-        <button type="button" className="btn btn-link btn-floating mx-1">
-          <i className="bi bi-github"></i>
-        </button>
       </div>
     </form>
   );

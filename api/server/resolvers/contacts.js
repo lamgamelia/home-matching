@@ -1,23 +1,17 @@
 const { db} = require('../db.js');
 
-async function listMessage()
+async function listMessage(_,{email})
     {
-      const messages = await db.collection('messageData').find({}).toArray();
-      return messages;
-    };
-async function listGallery()
-    {
-      const messages = await db.collection('galleryData').find({}).toArray();
-      return messages;
-    };
-    async function listReview()
-    {
-      const messages = await db.collection('reviewData').find({}).toArray();
-      console.log(messages);
+      const messages = await db.collection('messageData').find({
+        $or:[
+          {email: email},
+          {receiveremail: email}
+        ]
+      }).toArray();
       return messages;
     };
 
-async function addMessage (_, {newMessage})
+async function sendMessage (_, {newMessage})
   {
     console.log("Adding message", newMessage);
     async function getNextSequence(name) {
@@ -41,6 +35,6 @@ module.exports = {
     listMessage
   },
 	Mutation: {
-		addMessage
+		sendMessage
 	}
 };
