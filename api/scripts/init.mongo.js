@@ -13,15 +13,7 @@ initMessageData = [{
 				datetime: new Date(),
 			   }]
 
-initReviewData =[{
-	id: 0,
-	name: 'reviewerName',
-	email: 'reviewerEmail',
-  designer: 'No1 Designer',
-  rating: 5,
-	reviewMessage: 'reviewContent',
-	datetime: new Date(),
-},
+initReviewData =[
 {
 	id: 1,
 	name: 'reviewerName2',

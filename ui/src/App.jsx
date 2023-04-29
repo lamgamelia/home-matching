@@ -35,6 +35,7 @@ function LoginStatus(props) {
           <span> {user.username}</span>
         </p>
         <Link to="/" className="dropdown-item" href="#">My Profile (only designers)</Link>
+        <Link to="/PostReview" className="dropdown-item" href="#">Review our designer</Link>
         <Link to="/" className="dropdown-item" href="#" onClick={logout}>Logout</Link>
       </ul>
     </li>
@@ -129,7 +130,7 @@ function AuthRoute({ component: Component, ...rest }) {
   )
 }
 
-function App() {
+export function App() {
   return (
   <AuthProvider><BrowserRouter>
     <Route path="/" component={Homey}/>

@@ -6,12 +6,13 @@ import { AuthContext } from "../context/auth.js";
 
 function Display(props){
     const review = props.review;
-    const starArray = Array(review.rating).fill(1).map(i => <i className="bi bi-star-fill text-warning"></i>);
-    
+    const keyStar = [1,2,3,4,5];
+    const starArray = keyStar.slice(0,review.rating).map(i => <i key={i} className="bi bi-star-fill text-warning"></i>);
+    console.log(review);
     return(
         <div className="col-md-4 m-0 d-flex flex-column align-items-center" style={{paddingTop: "30px", paddingBottom: "30px"}} >
             <div>
-                <img className="image-rounded p-2"src="/homey.png"/>
+                <img className="image-rounded p-2" src={review.reviewImage || "/homey.png"}/>
             </div>
             <h6>{review.designer}</h6>
             <div>
@@ -117,7 +118,7 @@ export class Home extends React.Component {
     async loadData(){
         const query = `query{
             listReview{
-                id name designer rating reviewMessage
+                id name designer rating reviewMessage reviewImage
             }
         }`;
 
@@ -219,7 +220,7 @@ export class Home extends React.Component {
             <div id="reviewSnippet" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <div className="row no-gutters" style={{marginTop: "30px", marginLeft:"auto", marginRight:"auto", backgroundColor:"#FAF9F6"}}>  
+                        <div className="row no-gutters" style={{marginTop: "30px", marginLeft:"auto", marginRight:"auto", backgroundColor:"#FAF9F6"}>  
                             {review1.map((review) => (
                                 <div key={review.id} className="col-md-4 m-0 d-flex flex-column align-items-center" style={{ paddingTop: "30px", paddingBottom: "30px" }}>
                                 <Display review={review} />

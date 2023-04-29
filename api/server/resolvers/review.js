@@ -1,5 +1,5 @@
 const { db } = require('../db.js');
-const checkAuth = require('../util/check-auth.js');
+//const checkAuth = require('../util/check-auth.js');
 
 async function listReview()
     {
@@ -8,9 +8,9 @@ async function listReview()
     };
 
     
-async function addReview (_, {newReview}, context)
+async function addReview (_, {newReview})//, context)
   {
-    const user = checkAuth(context);
+    //const user = checkAuth(context);
     const body = newReview.reviewMessage;
     if (body.trim() === '') {
       throw new Error('Post body must not be empty');
@@ -25,8 +25,8 @@ async function addReview (_, {newReview}, context)
       return result.value.current;
     }
       newReview.id = await getNextSequence('fixedindex');
-      newReview.name = user.username;
-      newReview.email = user.email;
+      //newReview.name = user.username;
+      //newReview.email = user.email;
       newReview.datetime = new Date();
       console.log("Adding review", newReview);
       const result = await db.collection('reviewData').insertOne(newReview);
