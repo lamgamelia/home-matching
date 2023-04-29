@@ -220,7 +220,7 @@ export class Home extends React.Component {
             <div id="reviewSnippet" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <div className="row no-gutters" style={{marginTop: "30px", marginLeft:"auto", marginRight:"auto", backgroundColor:"#FAF9F6"}>  
+                        <div className="row no-gutters" style={{marginTop: "30px", marginLeft:"auto", marginRight:"auto", backgroundColor:"#FAF9F6"}}>  
                             {review1.map((review) => (
                                 <div key={review.id} className="col-md-4 m-0 d-flex flex-column align-items-center" style={{ paddingTop: "30px", paddingBottom: "30px" }}>
                                 <Display review={review} />

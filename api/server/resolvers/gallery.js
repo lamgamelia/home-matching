@@ -1,6 +1,6 @@
 const { db } = require('../db.js');
 
-async function listGallery(_,{propertyType = "", designStyle = "", noOfBedrooms = 0}) {
+async function listGallery(_,{propertyType = "", designStyle = "", noOfBedrooms = 0, designerID=""}) {
   const filter = {};
   if (propertyType) {
     filter.propertyType = propertyType;
@@ -19,6 +19,9 @@ async function listGallery(_,{propertyType = "", designStyle = "", noOfBedrooms 
     {
       filter.noOfBedrooms = {$gt : 5}
     }
+  }
+  if (designerID){
+    filter.designerID = designerID;
   }
 
   const galleries = await db.collection('galleryData').find(filter).toArray();

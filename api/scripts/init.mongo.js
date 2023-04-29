@@ -90,7 +90,8 @@ initReviewData =[
 const initGalleryData = [{
   id: 1,
   title: 'abc',
-  company: 'def',
+  designerID: 1,
+  company: 'No1 Designer',
   propertyType: 'Condo',
   propertySize: 500,
   designStyle1: 'Modern',
@@ -100,7 +101,8 @@ const initGalleryData = [{
 },{
   id: 2,
   title: 'abc',
-  company: 'def',
+  designerID: 1,
+  company: 'No1 Designer',
   propertyType: 'Hdb',
   propertySize: 500,
   designStyle1: 'Modern',
@@ -110,7 +112,8 @@ const initGalleryData = [{
 },{
   id: 3,
   title: 'abc',
-  company: 'def',
+  designerID: 1,
+  company: 'No2 Designer',
   propertyType: 'Condo',
   propertySize: 500,
   designStyle1: 'Modern',
@@ -120,7 +123,8 @@ const initGalleryData = [{
 },{
   id: 4,
   title: 'abc',
-  company: 'def',
+  designerID: 2,
+  company: 'No2 Designer',
   propertyType: 'Landed',
   propertySize: 500,
   designStyle1: 'Modern',
@@ -130,7 +134,8 @@ const initGalleryData = [{
 },{
   id: 5,
   title: 'abc',
-  company: 'def',
+  designerID: 2,
+  company: 'No3 Designer',
   propertyType: 'Condo',
   propertySize: 500,
   designStyle1: 'Modern',
@@ -140,7 +145,8 @@ const initGalleryData = [{
 },{
   id: 6,
   title: 'abc',
-  company: 'def',
+  designerID: 3,
+  company: 'No3 Designer',
   propertyType: 'Hdb',
   propertySize: 500,
   designStyle1: 'Artistic',
