@@ -12,7 +12,6 @@ export function Contact() {
   }
 
   useEffect(() => {
-    console.log(userData);
     //userContact();
   }, [userData]);
 
@@ -98,7 +97,7 @@ export function Contact() {
             </form>
 
             <div className="text-center text-md-left">
-              <a className="btn btn-primary" onClick={handleSubmit}>Send</a>
+              <a className="btn btn-primary" onClick={handleSubmit} style={{color:"white"}}>Send</a>
             </div>
             <div className="status"></div> 
 
