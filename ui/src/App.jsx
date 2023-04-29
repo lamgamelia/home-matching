@@ -16,7 +16,6 @@ import {Contact} from "./pages/Contact.jsx";
 import {Match} from "./pages/Match.jsx";
 import {Login} from "./pages/Login.jsx";
 import {Register} from "./pages/Register.jsx";
-import { ImgUpload } from "./components/ImgUpload.jsx";
 import { PostReview } from "./components/PostReview.jsx";
 import {DesignerProfile} from "./pages/DesignerProfile.jsx"
 import graphQLFetch from './graphql.js';

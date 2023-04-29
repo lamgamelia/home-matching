@@ -6,7 +6,7 @@ const initialState = {
   user: null
 };
 //jwt
-if (localStorage.getItem('jwtToken')) {
+/**if (localStorage.getItem('jwtToken')) {
   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
 
   if (decodedToken.exp * 1000 < Date.now()) {
@@ -14,8 +14,8 @@ if (localStorage.getItem('jwtToken')) {
   } else {
     initialState.user = decodedToken;
   }
-}
-//jwt
+}**/
+
 const AuthContext = createContext({
   user: null,
   login: (userData) => {},

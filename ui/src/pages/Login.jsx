@@ -77,7 +77,7 @@ export function Login (props) {
         console.log('user not logged in');
       } else {
         console.log('user logged in');
-        context.login(userData);
+        context.login(data.login);
         props.history.push('/');
       }
   }
