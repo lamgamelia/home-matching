@@ -1,5 +1,7 @@
-const { useState, useEffect } = React;
+const { useState, useEffect, useContext } = React;
 import graphQLFetch from '../graphql.js';
+
+import { AuthContext } from "../context/auth.js";
 
 function convertToBase64(file){
     return new Promise((resolve, reject) => {
@@ -36,6 +38,30 @@ function PropertySize(props){
         Property Size in sqft</label>
       <div className="col-sm-6">
         <input name="propertySize" type="number" className="form-control" id="propertySize" onChange={props.changeHandler}/>
+      </div>
+    </div>
+  )
+}
+
+function Title(props){
+  return (
+    <div className="form-group row">
+      <label htmlFor="title" className="col-sm-6 col-form-label">
+        Title</label>
+      <div className="col-sm-6">
+        <input name="title" type="text" className="form-control" id="title" onChange={props.changeHandler}/>
+      </div>
+    </div>
+  )
+}
+
+function Company(props){
+  return (
+    <div className="form-group row">
+      <label htmlFor="company" className="col-sm-6 col-form-label">
+        Company</label>
+      <div className="col-sm-6">
+        <input name="company" type="text" className="form-control" id="company" onChange={props.changeHandler}/>
       </div>
     </div>
   )
@@ -102,16 +128,19 @@ function NoOfBedrooms(props){
 }
 
 export function ImgUpload() {
+  const {user} = useContext(AuthContext);
+  const username = user.username;
   const [selectedImages, setSelectedImages] = useState([]);
   const [selectedBase64, setSelectedBase64] = useState([]);
   const [galleryData, setGalleryData] = useState({
-    title: 'abc',
-    company: 'def',
-    propertyType: 'Condo',
-    propertySize: 500,
-    designStyle1: 'Modern',
-    designStyle2: 'Nil',
-    noOfBedrooms: 3 
+    title: '',
+    company: '',
+    designerUsername: username,
+    propertyType: '',
+    propertySize: 0,
+    designStyle1: '',
+    designStyle2: '',
+    noOfBedrooms: 0, 
   })
   useEffect(() => {{
     console.log(galleryData);
@@ -158,6 +187,7 @@ export function ImgUpload() {
     const query = `mutation addGallery ($gallery: InputGallery!){
         addGallery (newGallery: $gallery) {
             id
+            designerUsername
             title
             company
             propertyType
@@ -185,6 +215,8 @@ export function ImgUpload() {
       <div className="container">
         <div className="row">
           <div className="col">
+            <Title changeHandler={changeHandler}/>
+            <Company changeHandler={changeHandler}/>
             <PropertyType changeHandler={changeHandler}/>
             <PropertySize changeHandler={changeHandler}/>
             <DesignStyle1 changeHandler={changeHandler}/>
