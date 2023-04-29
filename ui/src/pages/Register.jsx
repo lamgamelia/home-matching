@@ -12,10 +12,6 @@ export function Register() {
       confirmPassword: ''
     });
 
-    useEffect(() => {
-      console.log(userData);
-    }, [userData])
-
     const handleInputs = (e) => {
       const name = e.target.name;
       const value = e.target.value;
@@ -37,11 +33,10 @@ export function Register() {
 
       const data = await graphQLFetch(query, { user });
       if (!data) {
-        console.log('user not created');
+        alert('user not created');
       } else {
-        console.log('user created');
-        context.login(userData);
-        setUserData({...userData, username: '', email: '', password: '', confirmPassword: ''})
+        alert('user created, please proceed to login');
+        //context.login(userData);
       }
     }
 
@@ -65,7 +60,7 @@ export function Register() {
         </div>
 
         <div className="form-outline mb-4">
-          <input type="password" id="form2Example3" name="confirmPassword" onChange={handleInputs} className="form-control" />
+          <input type="password" id="form2Example4" name="confirmPassword" onChange={handleInputs} className="form-control" />
           <label className="form-label" htmlFor="form2Example2">Confirm Password</label>
         </div>
 
@@ -85,26 +80,6 @@ export function Register() {
 
         <button type="button" className="btn btn-primary btn-block mb-4" onClick={handleSubmit}>
           Sign up</button>
-
-        {/**<div className="text-center">
-          
-          <p>or sign up with:</p>
-          <button type="button" className="btn btn-link btn-floating mx-1">
-            <i className="bi bi-facebook"></i>
-          </button>
-
-          <button type="button" className="btn btn-link btn-floating mx-1">
-            <i className="bi bi-google"></i>
-          </button>
-
-          <button type="button" className="btn btn-link btn-floating mx-1">
-            <i className="bi bi-twitter"></i>
-          </button>
-
-          <button type="button" className="btn btn-link btn-floating mx-1">
-            <i className="bi bi-github"></i>
-          </button>
-    </div>**/}
       </form>
     );
    

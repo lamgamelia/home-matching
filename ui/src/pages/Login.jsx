@@ -72,13 +72,32 @@ export function Login (props) {
         token
       }
     }`
+    
     const data = await graphQLFetch(query, user );
       if (!data) {
         console.log('user not logged in');
       } else {
         console.log('user logged in');
-        context.login(data.login);
-        props.history.push('/');
+        const name = data.login.username;
+        const email = data.login.email;
+        const id = data.login.id;
+        const createdAt = data.login.createdAt;
+        const token = data.login.token;
+        const query = `query{
+          listMessage(email:"${email}"){
+            id name email company receiveremail message datetime
+          }
+        }`;
+    
+        const rsp = await fetch('http://localhost:8000/graphql',{
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({query})
+        });
+    
+        const body = await rsp.text();
+        const result = JSON.parse(body);
+        setUserData({...userData, id: id, username: name, email: email, createdAt:createdAt, token:token, message:result.data.listMessage})
       }
   }
 
