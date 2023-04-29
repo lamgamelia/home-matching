@@ -19,7 +19,8 @@ type Message{
     id: Int!
     name: String!
     email: String!
-    subject: String!
+    company: String
+    receiveremail: String!
     message: String
     datetime: GraphQLDate!
 }
@@ -49,9 +50,9 @@ type Designer{
 input InputMessage {
     name: String!
     email: String!
-    subject: String!
+    company: String
+    receiveremail: String!
     message: String
-    datetime: GraphQLDate!
 }
 
 input InputReview {
@@ -95,14 +96,14 @@ input RegisterInput{
 }
 
 type Query{
-    listMessage: [Message]!
+    listMessage(email:String): [Message]!
     listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int): [Gallery]!
     listReview: [Review]
     listDesigner(houseCondition:String,feeLevel:Int,houseType:String,designStyle:String): [Designer]
 }
 
 type Mutation {
-    addMessage(newMessage: InputMessage): Message
+    sendMessage(newMessage: InputMessage): Message
     addReview(newReview: InputReview): Review
     addGallery(newGallery: InputGallery): Gallery
     register(registerInput: RegisterInput): User!
