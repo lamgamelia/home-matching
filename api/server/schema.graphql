@@ -110,7 +110,7 @@ input RegisterInput{
 
 type Query{
     listMessage(email:String): [Message]!
-    listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int, designerID:Int): [Gallery]!
+    listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int, designerUsername:String): [Gallery]!
     listReview: [Review]
     listDesigner(houseCondition:String,feeLevel:Int,houseType:String,designStyle:String): [Designer]
     selectDesignerByID(id:Int!): Designer
