@@ -36,12 +36,12 @@ export class DesignerProfile extends React.Component{
   }
 
   async loadGalleryData(){
-    const query = `query ($designerID:Int){
-      listGallery (designerID:$designerID){
-        id title designerID propertyType designStyle1 designStyle2 noOfBedrooms image
+    const query = `query ($designerUsername:String){
+      listGallery (designerUsername:$designerUsername){
+        id title designerUsername propertyType designStyle1 designStyle2 noOfBedrooms image
       }
     }`;
-    const data = await graphQLFetch(query,{designerID:this.props.designer.id});
+    const data = await graphQLFetch(query,{designerUsername:this.props.designer.username});
     this.setState({projects: data.listGallery})
   }
 
