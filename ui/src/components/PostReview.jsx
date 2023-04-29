@@ -20,14 +20,13 @@ export function PostReview (props) {
     const [reviewData, setReviewData] = useState({name: reviewerName, email: reviewerEmail});
     const [designerData, setDesignerData] = useState([])
 
-    useEffect(() => {
-        const onLoad = async () => {
+    useEffect(async () => {
         const query = `query{listDesigner{title}}`;
         const response = await graphQLFetch(query);
         const title = response.listDesigner.map(i => i.title);
         console.log("Response from GQL server:", title);
         setDesignerData(title);
-    }}, []);
+    }, []);
 
     useEffect(() => console.log("state updated", reviewData), [reviewData]);
 

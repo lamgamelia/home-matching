@@ -30,6 +30,8 @@ type Review{
     id: Int!
     name: String!
     email: String!
+    designer: String!
+    rating: Int!
     reviewMessage: String
     reviewImage: String
     datetime: GraphQLDate!
