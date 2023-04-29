@@ -35,7 +35,6 @@ export function Login (props) {
     const body = await rsp.text();
     const result = JSON.parse(body);
     setUserData({...userData, username: name, email: email, message:result.data.listMessage})
-    
   }
 
   useEffect(() => {

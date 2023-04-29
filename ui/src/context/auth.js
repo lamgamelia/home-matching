@@ -5,7 +5,7 @@ import jwtDecode from 'jwt-decode';
 const initialState = {
   user: null
 };
-/*
+//jwt
 if (localStorage.getItem('jwtToken')) {
   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
 
@@ -15,7 +15,7 @@ if (localStorage.getItem('jwtToken')) {
     initialState.user = decodedToken;
   }
 }
-*/
+//jwt
 const AuthContext = createContext({
   user: null,
   login: (userData) => {},
@@ -43,7 +43,9 @@ function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   function login(userData) {
+    console.log(userData)
     localStorage.setItem('jwtToken', userData.token);
+    console.log('set token in local storagee')
     dispatch({
       type: 'LOGIN',
       payload: userData

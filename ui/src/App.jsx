@@ -16,6 +16,9 @@ import {Contact} from "./pages/Contact.jsx";
 import {Match} from "./pages/Match.jsx";
 import {Login} from "./pages/Login.jsx";
 import {Register} from "./pages/Register.jsx";
+import { ImgUpload } from "./components/ImgUpload.jsx";
+import { PostReview } from "./components/PostReview.jsx";
+import {DesignerProfile} from "./pages/DesignerProfile.jsx"
 import graphQLFetch from './graphql.js';
 import {ImgUpload } from "./components/ImgUpload.jsx";
 
@@ -192,6 +195,7 @@ function Chat(props){
   )
 }
 
+
 function LoginStatus(props) {
   const { user, logout } = useContext(AuthContext);
   
@@ -206,6 +210,7 @@ function LoginStatus(props) {
           <span> {user.username}</span>
         </p>
         <Link to="/" className="dropdown-item" href="#">My Profile (only designers)</Link>
+        <Link to="/PostReview" className="dropdown-item" href="#">Review our designer</Link>
         <Link to="/" className="dropdown-item" href="#" onClick={logout}>Logout</Link>
       </ul>
     </li>
@@ -303,7 +308,7 @@ function AuthRoute({ component: Component, ...rest }) {
   )
 }
 
-function App() {
+export function App() {
   return (
   <AuthProvider><BrowserRouter>
     <Route path="/" component={Homey}/>
@@ -316,6 +321,8 @@ function App() {
       <AuthRoute path="/login" component={Login}/>
       <AuthRoute path="/register" component={Register}/>
       <Route path="/imgUpload" component={ImgUpload}/>
+      <Route path="/designerProfile" component={DesignerProfile}/>
+      <Route path="/postReview" component={PostReview}/>
     </Switch>
   </BrowserRouter></AuthProvider>);
 }

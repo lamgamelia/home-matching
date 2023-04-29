@@ -17,6 +17,7 @@
   "license": "ISC",
   "homepage": "https://github.com/IT5007-2220/course-project-homey",
   "dependencies": {
+    "apollo-link-context": "^1.0.20",
     "apollo-server-express": "^2.26.1",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
