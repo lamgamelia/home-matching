@@ -170,6 +170,7 @@ export class Match extends React.Component {
         listDesigner (houseCondition:$propertyCondition,houseType:$propertyType,designStyle:$designStyle,feeLevel:$feeLevel){
           id,
           title,
+          username,
           email,
           mobile,
           designStyle,
