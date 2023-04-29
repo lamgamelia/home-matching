@@ -75,9 +75,9 @@ export function Login (props) {
     
     const data = await graphQLFetch(query, user );
       if (!data) {
-        console.log('user not logged in');
+        //console.log('user not logged in');
       } else {
-        console.log('user logged in');
+        //console.log('user logged in');
         const name = data.login.username;
         const email = data.login.email;
         const id = data.login.id;

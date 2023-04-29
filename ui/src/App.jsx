@@ -187,7 +187,6 @@ const PopChat = (props) => {
 
 function Chat(props){
   const {user} = useContext(AuthContext);
-  console.log(user)
   return user ? (
     <PopChat user={user} />
   ) : (

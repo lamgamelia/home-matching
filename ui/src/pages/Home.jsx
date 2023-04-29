@@ -8,7 +8,6 @@ function Display(props){
     const review = props.review;
     const keyStar = [1,2,3,4,5];
     const starArray = keyStar.slice(0,review.rating).map(i => <i key={i} className="bi bi-star-fill text-warning"></i>);
-    console.log(review);
     return(
         <div className="col-md-4 m-0 d-flex flex-column align-items-center" style={{paddingTop: "30px", paddingBottom: "30px"}} >
             <div>

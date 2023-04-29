@@ -15,9 +15,9 @@ export class SingleDesigner extends React.Component{
           </div>
           <div className="col-md-6 p-4 ps-md-0">
             <h5 className="mt-0">{this.props.designer.title}</h5>
-            <h6>Style:{this.props.designer.designStyle}</h6>
-            <h6>Email:{this.props.designer.email}</h6>
-            <h6>Mobile:{this.props.designer.mobile}</h6>
+            <h6>Style: {this.props.designer.designStyle}</h6>
+            <h6>Email: {this.props.designer.email}</h6>
+            <h6>Mobile: {this.props.designer.mobile}</h6>
             <p>{this.props.designer.description}</p>
             <div className="btn btn-primary" onClick={()=>this.props.selectDesigner(this.props.designer)}>More Infomation</div>
           </div>

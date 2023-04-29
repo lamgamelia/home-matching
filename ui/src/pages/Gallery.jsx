@@ -52,7 +52,6 @@ export class Gallery extends React.Component {
 
       const body = await response.text();
       const result = JSON.parse(body);
-      console.log(result.data.listGallery);
       this.setState({projects: result.data.listGallery})
     }
   
