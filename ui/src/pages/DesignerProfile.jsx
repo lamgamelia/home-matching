@@ -32,26 +32,7 @@ function Display(props){
 export class DesignerProfile extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {designer:{title:'',designStyle:[],email:'',mobile:''}, id: 1,projects:[]};
-  }
-
-  async loadData(){
-    const query = `query selectDesigner($id:Int!) {
-      selectDesignerByID(id:$id){
-        id,
-        title,
-        email,
-        mobile,
-        designStyle,
-        propertyCondition,
-        feeLevel,
-        propertyType,
-        description,
-      }
-    }`;
-    const variables = {"id":this.state.id};
-    const data = await graphQLFetch(query, variables);
-    this.setState({designer: data.selectDesignerByID})
+    this.state = {designer:this.props.designer, id: 1,projects:[]};
   }
 
   async loadGalleryData(){
@@ -69,18 +50,19 @@ export class DesignerProfile extends React.Component{
 
     const body = await response.text();
     const result = JSON.parse(body);
-    console.log(result.data.listGallery);
     this.setState({projects: result.data.listGallery})
   }
 
   componentDidMount(){
-    this.loadData();
     this.loadGalleryData();
   }
 
   render(){
     return(
       <div>
+        <div className="row g-0 bg-body-secondary position-relative bg-white align-items-center mx-auto my-auto" style={{position:'relative'}}>
+          <i class="bi bi-arrow-left btn btn-primary" onClick={()=>{this.props.selectDesigner()}}>Back</i>
+        </div>
         <div className="row g-0 bg-body-secondary position-relative bg-light align-items-center mx-auto my-auto" style={{position:'relative'}}>
           <div className="col-md-4 mb-md-0 p-md-4 align-items-center mx-auto my-auto">
             <img src="home-design.jpg" className="w-100" alt={this.state.designer.title}/>

@@ -1,5 +1,6 @@
 import {SingleDesigner} from "./SingleDesigner.jsx";
 import graphQLFetch from '../graphql.js';
+import {DesignerProfile} from "./DesignerProfile.jsx"
 
 class Recommended3Designers extends React.Component{
   constructor(props){
@@ -19,7 +20,7 @@ class Recommended3Designers extends React.Component{
           <div className="card-body">
             <h6 className="card-text">{this.props.designer.title} ({this.props.designer.designStyle})</h6>
             <p className="card-text">{this.props.designer.description}</p>
-            <a href="#" className="btn btn-primary">Check it Now!</a>
+            <div className="btn btn-primary" onClick={()=>this.props.selectDesigner(this.props.designer)}>Check it Now!</div>
           </div>
         </div>  
       );
@@ -29,11 +30,40 @@ class Recommended3Designers extends React.Component{
   }
 }
 
+class MultiDesigners extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+    return (
+    <div>
+      <div className="bg-light" style={{position:'relative'}}>
+        <div className="row no-gutters item-align-center p-5">
+              <h1 className="">Top Recommendations</h1>
+        </div>
+        <div className="row justify-content-center px-5 bg-light" >
+          <Recommended3Designers designer={this.props.designers[0]} selectDesigner={this.props.selectDesigner}/>
+          <Recommended3Designers designer={this.props.designers[1]} selectDesigner={this.props.selectDesigner}/>
+          <Recommended3Designers designer={this.props.designers[2]} selectDesigner={this.props.selectDesigner}/>
+        </div>
+      </div>
+
+      <div style={{position:'relative'}}>
+        <div className="row no-gutters item-align-center p-5">
+            <h1 className="">Our Designers</h1>
+            {this.props.designers.map((designer)=>(<SingleDesigner key={designer.id} designer={designer} selectDesigner={this.props.selectDesigner}/> ))}
+        </div>
+      </div>
+
+    </div>);
+    }
+}
 
 export class Designers extends React.Component {
     constructor() {
       super();
-      this.state = {designers:[]};
+      this.state = {designers:[],showProfile:false,selectedDesigner:null};
+      this.selectDesigner = this.selectDesigner.bind(this);
     }
     async loadData(){
       const query = `query listDesigner {
@@ -58,28 +88,21 @@ export class Designers extends React.Component {
       this.loadData();
     }
 
-    render(){
-    return (
-    <div>
-      <div className="bg-light" style={{position:'relative'}}>
-        <div className="row no-gutters item-align-center p-5">
-              <h1 className="">Top Recommendations</h1>
-        </div>
-        <div className="row justify-content-center px-5 bg-light" >
-          <Recommended3Designers designer={this.state.designers[0]}/>
-          <Recommended3Designers designer={this.state.designers[1]}/>
-          <Recommended3Designers designer={this.state.designers[2]}/>
-        </div>
-      </div>
-
-      <div style={{position:'relative'}}>
-        <div className="row no-gutters item-align-center p-5">
-            <h1 className="">Our Designers</h1>
-            {this.state.designers.map((designer)=>(<SingleDesigner key={designer.id} designer={designer}/>))}
-        </div>
-      </div>
-
-    </div>);
+    selectDesigner(designer=null){
+      if (designer){
+        this.setState({selectedDesigner:designer,showProfile:true});
+      }else{
+        this.setState({showProfile:false});
+      }
+      
     }
+
+    render(){
+      return (
+        <div>
+          {this.state.showProfile?<DesignerProfile designer={this.state.selectedDesigner} selectDesigner={this.selectDesigner}/>:<MultiDesigners designers={this.state.designers} selectDesigner={this.selectDesigner}/>}
+        </div>
+        );
+      }
   };
 

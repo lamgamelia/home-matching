@@ -19,7 +19,7 @@ export class SingleDesigner extends React.Component{
             <h6>Email:{this.props.designer.email}</h6>
             <h6>Mobile:{this.props.designer.mobile}</h6>
             <p>{this.props.designer.description}</p>
-            <a href="#" className="stretched-link">More Infomation</a>
+            <div className="btn btn-primary" onClick={()=>this.props.selectDesigner(this.props.designer)}>More Infomation</div>
           </div>
         </div>
       );
