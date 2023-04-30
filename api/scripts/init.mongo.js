@@ -249,7 +249,7 @@ const initDesignerData = [
   description: 'Designer focus in artistic style',
   propertyCondition: ['New','Resale'],
   propertyType: ['Condo','HDB'],
-  feeLevel:1,
+  feeLevel:'1',
   email: 'designer6@email.com',
   mobile: '000006',},
   

@@ -97,7 +97,7 @@ export function Contact() {
             </form>
 
             <div className="text-center text-md-left">
-              <a className="btn btn-primary" onClick={handleSubmit} style={{color:"white"}}>Send</a>
+              <a className="btn btn-primary" style={{color:"white"}}>Send</a>
             </div>
             <div className="status"></div> 
 
@@ -106,15 +106,15 @@ export function Contact() {
           <div className="col-md-3 text-center">
             <ul className="list-unstyled mb-0">
               <li><i className="fas fa-map-marker-alt fa-2x"></i>
-                <p>San Francisco, CA 94126, USA</p>
+                <p>Clementi, S 500000, Singapore</p>
               </li>
 
               <li><i className="fas fa-phone mt-4 fa-2x"></i>
-                <p>+ 01 234 567 89</p>
+                <p>+ 65 6234 5349</p>
               </li>
 
               <li><i className="fas fa-envelope mt-4 fa-2x"></i>
-                <p>contact@mdbootstrap.com</p>
+                <p>contact@homey.com</p>
               </li>
             </ul>
           </div>
