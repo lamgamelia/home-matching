@@ -193,7 +193,7 @@ const initDesignerData = [
   description: 'Designer focus in modern style',
   propertyCondition: ['New','Resale'],
   propertyType: ['Condo','HDB','Land','Commercial'],
-  feeLevel:2,
+  feeLevel:'2',
   email: 'designer1@email.com',
   mobile: '000001',},
 
@@ -204,7 +204,7 @@ const initDesignerData = [
   description: 'Designer focus in artistic style',
   propertyCondition: ['Resale'],
   propertyType: ['Condo','HDB','Commercial'],
-  feeLevel:1,
+  feeLevel:'1',
   email: 'designer2@email.com',
   mobile: '000002',},
 
@@ -215,7 +215,7 @@ const initDesignerData = [
   description: 'Designer focus in artistic style',
   propertyCondition: ['New'],
   propertyType: ['Condo'],
-  feeLevel:3,
+  feeLevel:'3',
   email: 'designer3@email.com',
   mobile: '000003',},
 
@@ -226,7 +226,7 @@ const initDesignerData = [
   description: 'Designer focus in artistic style',
   propertyCondition: ['New','Resale'],
   propertyType: ['Condo','HDB','Commercial'],
-  feeLevel:4,
+  feeLevel:'4',
   email: 'designer4@email.com',
   mobile: '000004',},
 
@@ -237,7 +237,7 @@ const initDesignerData = [
   description: 'Designer focus in artistic style',
   propertyCondition: ['New','Resale'],
   propertyType: ['Condo','HDB','Land'],
-  feeLevel:2,
+  feeLevel:'2',
   email: 'designer5@email.com',
   mobile: '000005',},
 
@@ -249,7 +249,7 @@ const initDesignerData = [
   description: 'Designer focus in artistic style',
   propertyCondition: ['New','Resale'],
   propertyType: ['Condo','HDB'],
-  feeLevel:1,
+  feeLevel:'1',
   email: 'designer6@email.com',
   mobile: '000006',},
   
@@ -260,7 +260,7 @@ const initDesignerData = [
   description: 'Designer focus in artistic style',
   propertyCondition: ['New','Resale'],
   propertyType: ['Condo','HDB','Land'],
-  feeLevel:1,
+  feeLevel:'1',
   email: 'designer7@email.com',
   mobile: '000007',},
 

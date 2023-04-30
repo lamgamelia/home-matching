@@ -198,7 +198,8 @@ export function MyProfile () {
             <div className="col">
             <div className="form-outline">
                 <label className="form-label" htmlFor="form6Example4">Fee Level</label>
-                <select name="feeLevel" className="form-control" id="form6Example4" onChange={handleChange}>
+                <select defaultValue = "" name="feeLevel" className="form-control" id="form6Example4" onChange={handleChange}>
+                    <option>Select One</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
