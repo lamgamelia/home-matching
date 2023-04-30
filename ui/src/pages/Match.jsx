@@ -44,13 +44,13 @@ class HouseType extends React.Component{
           <div className="mt-5">
             <h3 className="p-2" style={{fontWeight:"bold"}}>Property Condition</h3>
             <div className="btn-group btn-group-toggle" data-toggle="buttons">
-              <label className="btn btn-primary btn-size" style={{fontSize:"22px", fontWeight:"bold", color:"white", backgroundColor:"rgb(46, 103, 130)", borderColor:"white"}} onClick = {()=>this.setState({propertyCondition:'New'})}>
+              <label className="btn btn-primary btn-size" style={{fontSize:"22px", fontWeight:"bold", color:"white", borderColor:"white"}} onClick = {()=>this.setState({propertyCondition:'New'})}>
                 <input type="radio" name="options" id="conditionNew" autoComplete="off" /> New
               </label>
               
               <div className="mx-2"></div> 
 
-              <label className="btn btn-primary btn-size" style={{fontSize:"22px", fontWeight:"bold", color:"white", backgroundColor:"rgb(46, 103, 130)", borderColor:"white"}} onClick = {()=>this.setState({propertyCondition:'Resale'})}>
+              <label className="btn btn-primary btn-size" style={{fontSize:"22px", fontWeight:"bold", color:"white", borderColor:"white"}} onClick = {()=>this.setState({propertyCondition:'Resale'})}>
                 <input type="radio" name="options" id="conditionResale" autoComplete="off" /> Resale
               </label>
             </div>
@@ -62,25 +62,25 @@ class HouseType extends React.Component{
           <div className="mt-5">
             <h3 className="p-2" style={{fontWeight:"bold"}}>Property Type</h3>
             <div className="btn-group btn-group-toggle" data-toggle="buttons">
-              <label className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", backgroundColor:"rgb(46, 103, 130)", borderColor:"white"}} onClick = {()=>this.setState({propertyType:'HDB'})}>
+              <label className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", borderColor:"white"}} onClick = {()=>this.setState({propertyType:'HDB'})}>
                 <input type="radio" name="options" id="TypeHDB" autoComplete="off" /> HDB
               </label>
               
               <div className="mx-2"></div> 
 
-              <label className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", backgroundColor:"rgb(46, 103, 130)", borderColor:"white"}} onClick = {()=>this.setState({propertyType:'Condo'})}>
+              <label className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", borderColor:"white"}} onClick = {()=>this.setState({propertyType:'Condo'})}>
                 <input type="radio" name="options" id="TypeCondo" autoComplete="off" /> Condo
               </label>
 
               <div className="mx-2"></div> 
 
-              <label className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", backgroundColor:"rgb(46, 103, 130)", borderColor:"white"}} onClick = {()=>this.setState({propertyType:'Land'})}>
+              <label className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", borderColor:"white"}} onClick = {()=>this.setState({propertyType:'Land'})}>
                 <input type="radio" name="options" id="TypeLand" autoComplete="off" /> Land
               </label>
 
               <div className="mx-2"></div> 
 
-              <label className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", backgroundColor:"rgb(46, 103, 130)", borderColor:"white"}} onClick = {()=>this.setState({propertyType:'Commercial'})}>
+              <label className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", borderColor:"white"}} onClick = {()=>this.setState({propertyType:'Commercial'})}>
                 <input type="radio" name="options" id="TypeCommercial" autoComplete="off" /> Commercial
               </label>
             </div>  
@@ -100,7 +100,7 @@ class HouseType extends React.Component{
           </div>
 
           <div className="mt-5 justify-content-md-center align-items-center">
-            <button type="button" className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", backgroundColor:"rgb(46, 103, 130)", borderColor:"white"}} onClick={()=>this.handleSubmit()}>Next</button>
+            <button type="button" className="btn btn-primary" style={{fontSize:"22px", fontWeight:"bold", color:"white", borderColor:"white"}} onClick={()=>this.handleSubmit()}>Next</button>
           </div>
           <div><br></br></div>
           <div><br></br></div>
@@ -129,18 +129,18 @@ class HouseStyle extends React.Component{
             <h4>Select the type you prefer most:</h4>
             <div className="btn-group btn-group-toggle" data-toggle="buttons">
               <label className="btn" onClick={()=>this.setState({designStyle:'Modern'})}>
-                <input type="radio" name="options" id="styleModern" autoComplete="off" />
-                <img src="home-design.jpg" alt="My Image" className="img-fluid"/>
+                <input type="radio" name="options" id="StyleModern" autoComplete="off" />
+                <img src="StyleModern.jpg" alt="My Image" className="img-fluid"/>
               </label>
 
               <label className="btn" onClick={()=>this.setState({designStyle:'Artistic'})}>
-                <input type="radio" name="options" id="styleArtistic" autoComplete="off" />
-                <img src="home-design.jpg" alt="My Image" className="img-fluid"/>
+                <input type="radio" name="options" id="StyleArtistic" autoComplete="off" />
+                <img src="StyleArtistic.jpg" alt="My Image" className="img-fluid"/>
               </label>
 
               <label className="btn" onClick={()=>this.setState({designStyle:'Traditional'})}>
-                <input type="radio" name="options" id="styleTraditional" autoComplete="off" />
-                <img src="home-design.jpg" alt="My Image" className="img-fluid"/>
+                <input type="radio" name="options" id="StyleTraditional" autoComplete="off" />
+                <img src="StyleTraditional.jpg" alt="My Image" className="img-fluid"/>
               </label>
             </div>
         </div>
