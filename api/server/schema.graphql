@@ -114,6 +114,7 @@ type Query{
     listMessage(email:String): [Message]!
     listGallery(propertyType: String, designStyle: String, noOfBedrooms: Int, designerUsername:String): [Gallery]!
     listReview: [Review]
+    listUsers: [User]
     listDesigner(houseCondition:String,feeLevel:Int,houseType:String,designStyle:String): [Designer]
     selectDesignerByID(id:Int!): Designer
 }

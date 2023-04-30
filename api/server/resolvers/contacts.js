@@ -1,15 +1,21 @@
 const { db} = require('../db.js');
 
+async function listUsers()
+  {
+    const users = await db.collection('users').aggregate([{$sort : { id: -1}}]).toArray();
+    return users;
+  };
+
 async function listMessage(_,{email})
-    {
-      const messages = await db.collection('messageData').find({
-        $or:[
-          {email: email},
-          {receiveremail: email}
-        ]
-      }).toArray();
-      return messages;
-    };
+  {
+    const messages = await db.collection('messageData').find({
+      $or:[
+        {email: email},
+        {receiveremail: email}
+      ]
+    }).toArray();
+    return messages;
+  };
 
 async function sendMessage (_, {newMessage})
   {
@@ -32,7 +38,8 @@ async function sendMessage (_, {newMessage})
 
 module.exports = {
   Query: {
-    listMessage
+    listMessage,
+    listUsers
   },
 	Mutation: {
 		sendMessage

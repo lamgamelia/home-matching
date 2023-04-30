@@ -56,15 +56,39 @@ const PopChat = (props) => {
   }
   
   let textRef = React.createRef();
+  let emailRef = React.createRef();
 
   const [chatopen, setChatopen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [selectedEmail, setSelectedEmail] = useState(null);
+  const [uniqueEmailList, setUniqueEmails] = useState([]);
+  const [mainmessage, setMainMessage] = useState(messagesinfo);
   const [filteredMessages, setFilteredMessages] = useState([]);
+  console.log(filteredMessages)
+  useEffect(() => {
+    setFilteredMessages(mainmessage.filter((msg)=>msg.email === selectedEmail || msg.receiveremail === selectedEmail));
+  }, [selectedEmail, mainmessage]);
 
   useEffect(() => {
-    setFilteredMessages(messagesinfo.filter((msg)=>msg.email === selectedEmail || msg.receiveremail === selectedEmail));
-  }, [selectedEmail, messagesinfo]);
+    const uniqueEmails = mainmessage.reduce((acc, { email, receiveremail, name, company }) => {
+      if (email !== useremail) {
+        const found = acc.find(item => item.chat === email);
+        if (!found) {
+          const chat = email;
+          acc.push({ chat, name, company });
+        }
+      }
+      if (receiveremail !== useremail) {
+        const found = acc.find(item => item.chat === receiveremail);
+        if (!found) {
+          const chat = receiveremail;
+          acc.push({ chat, name, company });
+        }
+      }
+      return acc;
+    }, []);
+    setUniqueEmails(uniqueEmails);
+  }, [messagesinfo, useremail]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,6 +109,9 @@ const PopChat = (props) => {
     const message = textRef.current.value;
     if (textRef.current) {
       textRef.current.value = '';
+      if (emailRef.current){
+        emailRef.current.value = '';
+      }
     }
     if (!selectedEmail) {
       console.log('No receiver selected');
@@ -98,6 +125,24 @@ const PopChat = (props) => {
       message: message
     }
 
+    const searchquery = `query{
+      listUsers{
+        email
+      }
+    }`; 
+    const searchrsp = await fetch('http://localhost:8000/graphql',{
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({query: searchquery})
+    });
+
+    const searchbody = await searchrsp.text();
+    const searchresult = JSON.parse(searchbody);
+    const emaillist = searchresult.data.listUsers;
+    if(!emaillist.some(emailObj => emailObj.email === selectedEmail)){
+      alert('User not found');
+      return;
+    }
     const query = `mutation ($newMessage: InputMessage){
       sendMessage(newMessage: $newMessage){
         id
@@ -133,23 +178,38 @@ const PopChat = (props) => {
 
     const newbody = await newrsp.text();
     const newresult = JSON.parse(newbody);
-    setFilteredMessages(newresult.data.listMessage.filter((msg)=>msg.email === selectedEmail || msg.receiveremail === selectedEmail))
-    
+    const newMessageList = newresult.data.listMessage
+    setMainMessage(newMessageList);
+
+    const updateduniqueEmails = newresult.data.listMessage.reduce((acc, { email, receiveremail, name, company }) => {
+      if (email !== useremail) {
+        const found = acc.find(item => item.chat === email);
+        if (!found) {
+          const chat = email;
+          acc.push({ chat, name, company });
+        }
+      }
+      if (receiveremail !== useremail) {
+        const found = acc.find(item => item.chat === receiveremail);
+        if (!found) {
+          const chat = receiveremail;
+          acc.push({ chat, name, company });
+        }
+      }
+      return acc;
+    }, []);
+    setUniqueEmails(updateduniqueEmails);
   }
 
   const handleEmailClick = (email) => {
     setSelectedEmail(email === selectedEmail ? null : email);
   };
 
-  const uniqueEmails = messagesinfo.reduce((acc, {email, name, company}) => {
-    if (email !== useremail) {
-      const found = acc.find(item => item.email === email);
-      if (!found) {
-        acc.push({email, name, company});
-      }
-    }
-    return acc;
-  }, []);
+  const handleNewEmail = (e) => {
+    const email = e.target.value
+    setSelectedEmail(email)
+  }
+  
 
   return (
     <div className={isSticky ? 'sticky' : ''} id='chatCon' style={{position: "fixed", bottom: "0", right: "0", zIndex: 100}}>
@@ -157,10 +217,13 @@ const PopChat = (props) => {
         <div className="header">Chat with me</div>
         <div className="row no-gutters">
           <div className="col-3" style={{"borderRight": "1px solid black", "height":"350px", "overflowY": "auto" }}>
-            {uniqueEmails.map((uniqueEmail) => (
-              <div className="indivchatbox" key={uniqueEmail.email} onClick={() => handleEmailClick(uniqueEmail.email)}>
-                <div>{uniqueEmail.name}</div>
-                <div>({uniqueEmail.company})</div>
+          <div>
+            <input type="text" id="email" ref={emailRef} name="email" style={{width:"100%"}} placeholder="Enter New Email" onChange={handleNewEmail} />
+          </div>
+            {uniqueEmailList.map((uniqueEmailList) => (
+              <div className="indivchatbox" key={uniqueEmailList.chat} onClick={() => handleEmailClick(uniqueEmailList.chat)}>
+                <div>{uniqueEmailList.chat}</div>
+                <div>({uniqueEmailList.company})</div>
               </div>
             ))}
           </div>
