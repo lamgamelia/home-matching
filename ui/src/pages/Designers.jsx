@@ -47,10 +47,12 @@ class MultiDesigners extends React.Component{
           <Recommended3Designers designer={this.props.designers[2]} selectDesigner={this.props.selectDesigner}/>
         </div>
       </div>
-
+      
       <div style={{position:'relative'}}>
         <div className="row no-gutters item-align-center p-5">
-            <h1 className="">Our Designers</h1>
+          <h1 className="">Our Designers</h1>
+        </div>
+        <div className="row no-gutters item-align-center p-5">
             {this.props.designers.map((designer)=>(<SingleDesigner key={designer.id} designer={designer} selectDesigner={this.props.selectDesigner}/> ))}
         </div>
       </div>

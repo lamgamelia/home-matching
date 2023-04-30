@@ -208,6 +208,7 @@ export function ImgUpload() {
             console.log('image uploaded');
         }
     });
+    alert('Images have been uploaded, proceed to Our Designer page to check out your updated profile page!');
     
   }
   return (

@@ -102,6 +102,7 @@ export function MyProfile () {
             console.log('profile not updated');
         } else {
             console.log('profile updated');
+            alert('Your profile has been updated, proceed to upload more images!');
         }
     };
 
