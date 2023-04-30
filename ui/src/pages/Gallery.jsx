@@ -96,7 +96,7 @@ export class Gallery extends React.Component {
       query += `noOfBedrooms: ${this.state.noOfBedrooms}, `;
       }
 
-      query += `){ id title propertyType designStyle1 designStyle2 noOfBedrooms }}`;
+      query += `){ id title propertyType designStyle1 designStyle2 noOfBedrooms image}}`;
       const response = await fetch('http://localhost:8000/graphql',{
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
