@@ -64,6 +64,7 @@ export function PostReview (props) {
             console.log('review not submitted');
         } else {
             console.log('review submitted');
+            alert('Thank you for your review!');
         }
     }
 
