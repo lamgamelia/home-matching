@@ -64,7 +64,7 @@ const PopChat = (props) => {
   const [uniqueEmailList, setUniqueEmails] = useState([]);
   const [mainmessage, setMainMessage] = useState(messagesinfo);
   const [filteredMessages, setFilteredMessages] = useState([]);
-  console.log(filteredMessages)
+
   useEffect(() => {
     setFilteredMessages(mainmessage.filter((msg)=>msg.email === selectedEmail || msg.receiveremail === selectedEmail));
   }, [selectedEmail, mainmessage]);
@@ -75,14 +75,16 @@ const PopChat = (props) => {
         const found = acc.find(item => item.chat === email);
         if (!found) {
           const chat = email;
-          acc.push({ chat, name, company });
+          const nickname = chat.match(/^([^@]*)@/)[1];
+          acc.push({ chat, name, company, nickname:nickname });
         }
       }
       if (receiveremail !== useremail) {
         const found = acc.find(item => item.chat === receiveremail);
         if (!found) {
           const chat = receiveremail;
-          acc.push({ chat, name, company });
+          const nickname = chat.match(/^([^@]*)@/)[1];
+          acc.push({ chat, name, company, nickname:nickname });
         }
       }
       return acc;
@@ -183,17 +185,21 @@ const PopChat = (props) => {
 
     const updateduniqueEmails = newresult.data.listMessage.reduce((acc, { email, receiveremail, name, company }) => {
       if (email !== useremail) {
+        
         const found = acc.find(item => item.chat === email);
         if (!found) {
           const chat = email;
-          acc.push({ chat, name, company });
+          const nickname = chat.match(/^([^@]*)@/)[1];
+          acc.push({ chat, name, company, nickname:nickname });
         }
       }
       if (receiveremail !== useremail) {
         const found = acc.find(item => item.chat === receiveremail);
+        
         if (!found) {
           const chat = receiveremail;
-          acc.push({ chat, name, company });
+          const nickname = chat.match(/^([^@]*)@/)[1];
+          acc.push({ chat, name, company, nickname:nickname });
         }
       }
       return acc;
@@ -216,13 +222,13 @@ const PopChat = (props) => {
       <div className="chat-box" style={chatopen ? show : hide}>
         <div className="header">Chat with me</div>
         <div className="row no-gutters">
-          <div className="col-3" style={{"borderRight": "1px solid black", "height":"350px", "overflowY": "auto" }}>
+          <div className="col-3" style={{"borderRight": "1px solid black", "height":"350px", "overflowY": "auto", "textAlign": "center" }}>
           <div>
             <input type="text" id="email" ref={emailRef} name="email" style={{width:"100%"}} placeholder="Enter New Email" onChange={handleNewEmail} />
-          </div>
+          </div >
             {uniqueEmailList.map((uniqueEmailList) => (
               <div className="indivchatbox" key={uniqueEmailList.chat} onClick={() => handleEmailClick(uniqueEmailList.chat)}>
-                <div>{uniqueEmailList.chat}</div>
+                <div>{uniqueEmailList.nickname}</div>
                 <div>({uniqueEmailList.company})</div>
               </div>
             ))}
