@@ -4,8 +4,15 @@ const path = require('path');
 const {ApolloServer, UserInputError} = require('apollo-server-express');
 const mongoose = require('mongoose');
 const resolvers = require('./resolvers');
+const cors = require('cors');
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:3000"
+  })
+)
 
 const server = new ApolloServer({
   typeDefs: fs.readFileSync('./server/schema.graphql', 'utf-8'),

@@ -7,6 +7,8 @@
 * There is a need for a platform that can 1) connect home owners directly with designers, and 2) shorten the searching process through matching algorithm according to features that home owners take priority in.
 
 ## Key Features:
+Please refer to link below for screen recording that demonstrate our features:
+https://nusu-my.sharepoint.com/:p:/g/personal/e0924654_u_nus_edu/ES11VOMJcQtPhsmrxX0_pvIBhTqMbHXTA6zP8o56uK-GnA?e=jgOheN
 
 ### Matching of Homeowner and Designer
 Steps:
@@ -59,7 +61,8 @@ As the platform grows, machine learning can also be implemented on the data to o
 By applying patents on the matching algorithm and the design of the application, it can help to provide some legal protection. However, having patent on the matching algorithm might review the code, thus,  we may also choose to ensure the data and code are safely secured, applying the relevant industry-standard security measures to prevent unauthorised access to the code and data.
 
 ## Solution Architecture
-Initial draw up of wireframes is done via Miro mainly to illustrate the landing pages.
+Initial draw up of wireframes is done via Miro mainly to illustrate the landing pages. Refer to below link for the initial wireframes drawn up.
+https://nusu-my.sharepoint.com/:b:/g/personal/e0924654_u_nus_edu/EVDhQlkcfSNKo6BFZQsEUUwBWzsFwhDc57_BzBDHgFn7Rg?e=TGJMil
 
 The project is highly modularise, with the back-end organised within api folder and front-end within ui folder. For the back-end, resolvers are organised within server/resolvers folder. Each resolver that pertains to the same db collections are mostly organised within the same .js file within the folder. For the front-end, each component and pages are maintained within separate jsx file and exported ot the main App.jsx file. This modularisation eases collaboration across different team members.
 

@@ -14,8 +14,8 @@ const initialState = {
   } else {
     initialState.user = decodedToken;
   }
-}**/
-
+}
+*/
 const AuthContext = createContext({
   user: null,
   login: (userData) => {},
