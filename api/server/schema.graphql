@@ -47,7 +47,7 @@ type Designer{
     mobile: String!
     designStyle: [String!]
     propertyCondition: [String!]
-    feeLevel: String!
+    feeLevel: Int!
     propertyType: [String!]
     description: String!
     profileImage: String
@@ -89,7 +89,7 @@ input InputDesigner{
     mobile: String!
     designStyle: [String!]    
     propertyCondition: [String!]
-    feeLevel: String!
+    feeLevel: Int!
     propertyType: [String!]
     description: String!
     profileImage: String
