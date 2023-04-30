@@ -57,7 +57,7 @@ export class DesignerProfile extends React.Component{
         </div>
         <div className="row g-0 bg-body-secondary position-relative bg-light align-items-center mx-auto my-auto" style={{position:'relative'}}>
           <div className="col-md-4 mb-md-0 p-md-4 align-items-center mx-auto my-auto">
-            <img src="home-design.jpg" className="w-100" alt={this.state.designer.title}/>
+            <img src={this.state.designer.profileImage || "home-design.jpg"} className="w-100" alt={this.state.designer.title}/>
             <h6>Email:{this.state.designer.email}</h6>
             <h6>Mobile:{this.state.designer.mobile}</h6>
           </div>

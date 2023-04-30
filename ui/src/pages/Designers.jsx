@@ -16,7 +16,7 @@ class Recommended3Designers extends React.Component{
     if (this.props.designer){
       return(
         <div className="card col-md-4 d-flex justify-content-center justify-content-md-between bg-light" style={{width: "18rem", border:'3px'}}>
-          <img src="home-design.jpg" className="card-img-top" alt={this.props.designer.title}/>
+          <img src={this.props.designer.profileImage || "home-design.jpg"} className="card-img-top" alt={this.props.designer.title}/>
           <div className="card-body">
             <h6 className="card-text">{this.props.designer.title} ({this.props.designer.designStyle})</h6>
             <p className="card-text">{this.props.designer.description}</p>
@@ -78,6 +78,7 @@ export class Designers extends React.Component {
           feeLevel,
           propertyType,
           description,
+          profileImage
         }
       }`;
 

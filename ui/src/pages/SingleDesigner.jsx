@@ -11,7 +11,7 @@ export class SingleDesigner extends React.Component{
       return(
         <div className="row g-0 bg-body-secondary position-relative">
           <div className="col-md-6 mb-md-0 p-md-4">
-            <img src="home-design.jpg" className="w-100" alt={this.props.designer.title}/>
+            <img src={this.props.designer.profileImage || "home-design.jpg"} className="w-100" alt={this.props.designer.title}/>
           </div>
           <div className="col-md-6 p-4 ps-md-0">
             <h5 className="mt-0">{this.props.designer.title}</h5>

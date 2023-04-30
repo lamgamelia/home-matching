@@ -50,6 +50,7 @@ type Designer{
     feeLevel: Int!
     propertyType: [String!]
     description: String!
+    profileImage: String
 }
 
 input InputMessage {
@@ -91,6 +92,7 @@ input InputDesigner{
     feeLevel: Int!
     propertyType: [String!]
     description: String!
+    profileImage: String
 }
 
 type User{

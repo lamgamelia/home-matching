@@ -3,6 +3,17 @@ const { useContext, useState, useEffect } = React;
 import graphQLFetch from '../graphql.js';
 const Link = ReactRouterDOM.Link;
 
+function convertToBase64(file){
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader()
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+            resolve(fileReader.result)
+        };
+        fileReader.onerror = (error) => {reject(error)};
+    })
+}
+
 export function MyProfile () {
     const {user} = useContext(AuthContext);
     const myUsername = user.username;
@@ -54,6 +65,12 @@ export function MyProfile () {
         setMyProfileData({...myProfileData, [name]: valueArr});
     };
 
+    const selectImage = async (e) => {
+        const selectedFile = e.target.files[0];
+        const codedBase = await convertToBase64(selectedFile);
+        setMyProfileData({...myProfileData, profileImage: codedBase});
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const delquery = `mutation deleteDesignerbyUsername ($myUsername: String!){
@@ -91,9 +108,28 @@ export function MyProfile () {
     return (
         <form style={{padding:"30px"}}>
         <h2> My Profile </h2>
-        <div className="form-outline mb-4">
-            <label className="form-label" htmlFor="form6Example3">Company name</label>
-            <input name="title" type="text" id="form6Example3" className="form-control" onChange={handleChange} />            
+                
+        <div className="row mb-4">
+            <div className="col">
+            <div className="form-outline">
+                <label className="form-label" htmlFor="form6Example3">Company name</label>
+                <input name="title" type="text" id="form6Example3" className="form-control" onChange={handleChange} />
+            </div>
+            </div>
+            <div className="col">
+            <div className="form-outline">
+                <label>
+                    Upload profile image
+                    <br/>
+                    <input
+                        type="file"
+                        name="profileImage"
+                        onChange={selectImage}
+                        accept="image/png , image/jpeg, image/webp"
+                    />
+                </label>               
+            </div>
+            </div>
         </div>
 
         <div className="row mb-4">
